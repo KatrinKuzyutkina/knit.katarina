@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Заказ на изготовление — knit.katarina</title>
+  <meta name="theme-color" content="#c47a52" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="home.html">knit.katarina</a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="catalog.html">Каталог</a>
+      <a href="about.html">О мастерской</a>
+      <a href="custom-order.html" aria-current="page">На заказ</a>
+      <a href="delivery.html">Доставка</a>
+      <a href="contacts.html">Контакты</a>
+    </nav>
+    <div class="header-actions">
+      <a href="favorites.html" aria-label="Избранное">♡</a>
+      <a href="cart.html" aria-label="Корзина">Корзина</a>
+      <a class="header-account" href="account.html">Кабинет</a>
+    </div>
+  </header>
+
+  <main class="page narrow">
+    <div class="page-head">
+      <h1>Изделие на заказ</h1>
+      <p>Опишите идею — мастер оценит возможность и сроки изготовления.</p>
+    </div>
+
+    <form class="panel-form" id="custom-order-form">
+      <label class="field">
+        <span>Имя</span>
+        <input type="text" name="name" required />
+      </label>
+      <label class="field">
+        <span>Email</span>
+        <input type="email" name="email" required />
+      </label>
+      <label class="field">
+        <span>Телефон</span>
+        <input type="tel" name="phone" />
+      </label>
+      <label class="field">
+        <span>Тип изделия</span>
+        <select name="type" required>
+          <option value="интерьер">Интерьер</option>
+          <option value="подарок">Подарок</option>
+          <option value="аксессуар">Аксессуар</option>
+          <option value="другое">Другое</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Желаемый цвет / материалы</span>
+        <input type="text" name="materials" placeholder="Например: терракот, джут, шерсть" />
+      </label>
+      <label class="field">
+        <span>Описание идеи</span>
+        <textarea name="description" rows="5" required placeholder="Размер, стиль, для кого, референсы..."></textarea>
+      </label>
+      <button type="submit" class="btn btn-primary">Отправить заявку</button>
+      <p class="form-status" id="custom-status" hidden></p>
+      <p class="page-note">Для отправки заявки нужна регистрация — мы сохраним её в вашем кабинете и у администратора.</p>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand">knit.katarina</p>
+    <div class="footer-links">
+      <a href="catalog.html">Каталог</a>
+      <a href="delivery.html">Доставка и оплата</a>
+      <a href="contacts.html">Контакты</a>
+      <a href="login.html">Войти</a>
+    </div>
+    <p class="footer-copy">© knit.katarina — изделия ручной работы</p>
+  </footer>
+
+  <script src="js/store.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/custom-order.js"></script>
+</body>
+</html>

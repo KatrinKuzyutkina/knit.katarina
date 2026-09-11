@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Корзина — knit.katarina</title>
+  <meta name="theme-color" content="#c47a52" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="home.html">knit.katarina</a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="catalog.html">Каталог</a>
+      <a href="about.html">О мастерской</a>
+      <a href="custom-order.html">На заказ</a>
+      <a href="delivery.html">Доставка</a>
+      <a href="contacts.html">Контакты</a>
+    </nav>
+    <div class="header-actions">
+      <a href="favorites.html" aria-label="Избранное">♡</a>
+      <a href="cart.html" aria-current="page" aria-label="Корзина">Корзина</a>
+      <a class="header-account" href="account.html">Кабинет</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="page-head">
+      <h1>Корзина</h1>
+      <p>Оформление заказа уникальных изделий.</p>
+    </div>
+
+    <div id="cart-list" class="stack-list"></div>
+    <p class="catalog-empty" id="cart-empty" hidden>
+      Корзина пуста. <a class="text-link" href="catalog.html">Перейти в каталог →</a>
+    </p>
+
+    <form class="panel-form" id="checkout-form" hidden>
+      <h2>Оформление заказа</h2>
+      <label class="field">
+        <span>Имя</span>
+        <input type="text" name="name" required />
+      </label>
+      <label class="field">
+        <span>Телефон</span>
+        <input type="tel" name="phone" required />
+      </label>
+      <label class="field">
+        <span>Email</span>
+        <input type="email" name="email" required />
+      </label>
+      <label class="field">
+        <span>Способ доставки</span>
+        <select name="delivery" required>
+          <option value="courier">Курьер по городу</option>
+          <option value="pickup">Самовывоз</option>
+          <option value="post">Почта / СДЭК</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Способ оплаты</span>
+        <select name="payment" required>
+          <option value="card">Картой при получении</option>
+          <option value="transfer">Перевод</option>
+          <option value="cash">Наличными</option>
+        </select>
+      </label>
+      <label class="field">
+        <span>Адрес / комментарий</span>
+        <textarea name="address" rows="3"></textarea>
+      </label>
+      <p class="cart-total" id="cart-total"></p>
+      <button type="submit" class="btn btn-primary">Оформить заказ</button>
+      <p class="form-status" id="checkout-status" hidden></p>
+    </form>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand">knit.katarina</p>
+    <div class="footer-links">
+      <a href="catalog.html">Каталог</a>
+      <a href="delivery.html">Доставка и оплата</a>
+      <a href="contacts.html">Контакты</a>
+      <a href="login.html">Войти</a>
+    </div>
+    <p class="footer-copy">© knit.katarina — изделия ручной работы</p>
+  </footer>
+
+  <script src="js/store.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

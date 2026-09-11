@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Контакты — knit.katarina</title>
+  <meta name="theme-color" content="#c47a52" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="home.html">knit.katarina</a>
+    <nav class="nav" aria-label="Основная навигация">
+      <a href="catalog.html">Каталог</a>
+      <a href="about.html">О мастерской</a>
+      <a href="custom-order.html">На заказ</a>
+      <a href="delivery.html">Доставка</a>
+      <a href="contacts.html" aria-current="page">Контакты</a>
+    </nav>
+    <div class="header-actions">
+      <a href="favorites.html" aria-label="Избранное">♡</a>
+      <a href="cart.html" aria-label="Корзина">Корзина</a>
+      <a class="header-account" href="account.html">Кабинет</a>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="page-head">
+      <h1>Контакты</h1>
+      <p>Напишите нам или свяжитесь в удобном мессенджере.</p>
+    </div>
+
+    <div class="two-col">
+      <form class="panel-form" id="contact-form">
+        <h2>Обратная связь</h2>
+        <label class="field">
+          <span>Имя</span>
+          <input type="text" name="name" required />
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input type="email" name="email" required />
+        </label>
+        <label class="field">
+          <span>Сообщение</span>
+          <textarea name="message" rows="5" required></textarea>
+        </label>
+        <button type="submit" class="btn btn-primary">Отправить</button>
+        <p class="form-status" id="contact-status" hidden></p>
+      </form>
+
+      <aside class="panel">
+        <h2>Мессенджеры и соцсети</h2>
+        <ul class="contact-links">
+          <li><a href="https://t.me/knitkatarina" target="_blank" rel="noopener">Telegram</a></li>
+          <li><a href="https://instagram.com/knit.katarina" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://vk.com/knit.katarina" target="_blank" rel="noopener">ВКонтакте</a></li>
+        </ul>
+        <p class="page-note">Отвечаем в рабочие дни, обычно в течение суток.</p>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand">knit.katarina</p>
+    <div class="footer-links">
+      <a href="catalog.html">Каталог</a>
+      <a href="delivery.html">Доставка и оплата</a>
+      <a href="contacts.html">Контакты</a>
+      <a href="login.html">Войти</a>
+    </div>
+    <p class="footer-copy">© knit.katarina — изделия ручной работы</p>
+  </footer>
+
+  <script src="js/store.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/contacts.js"></script>
+</body>
+</html>
