@@ -1,103 +1,176 @@
 const PRODUCTS = [
   {
-    id: 1,
-    name: "Корзина из джута",
-    category: "интерьер",
-    color: "бежевый",
-    price: 4200,
-    tone: "#d4b896",
-    size: "Ø 28 × 22 см",
-    description:
-      "Плетёная корзина из натурального джута для хранения и декора. Единственный экземпляр ручной работы.",
-  },
-  {
-    id: 2,
-    name: "Ваза глиняная «Рассвет»",
-    category: "интерьер",
-    color: "терракот",
-    price: 5800,
-    tone: "#c47a52",
-    size: "Высота 24 см",
-    description:
-      "Керамическая ваза с тёплым глиняным оттенком. Подходит для сухоцветов и живых букетов.",
-  },
-  {
-    id: 3,
-    name: "Шарф ручной вязки",
-    category: "аксессуары",
+    id: 10,
+    name: "Зайка в комбинезоне",
+    category: "Зайки",
     color: "пыльная роза",
-    price: 3100,
-    tone: "#c9929a",
-    size: "180 × 30 см",
+    price: 1700,
+    tone: "#d4a8ad",
+    size: "Рост 28 см",
+    image: "images/bunny-overalls-1.jpg",
+    images: [
+      "images/bunny-overalls-1.jpg",
+      "images/bunny-overalls-2.png",
+      "images/bunny-overalls-3.jpg",
+    ],
     description:
-      "Мягкий шарф крупной вязки из смесовой пряжи. Тёплый акцент для повседневных образов.",
+      "Мягкая плюшевая зайка ручной работы в уютном комбинезоне. Доступна в двух вариантах: в берете или с повязкой. Отличный подарок ребёнку или украшение для уютного интерьера — каждый зайка создаётся вручную и с вниманием к деталям.",
   },
   {
-    id: 4,
-    name: "Подсвечник керамический",
-    category: "подарки",
-    color: "кремовый",
-    price: 2600,
-    tone: "#efe0cc",
-    size: "Высота 9 см",
+    id: 13,
+    name: "Зайка Ромео",
+    category: "Зайки",
+    color: "бежевый",
+    price: 1300,
+    tone: "#d4b896",
+    size: "Рост 20 см",
+    yarn: "полухлопковая",
+    image: "images/bunny-romeo.jpg",
+    images: ["images/bunny-romeo.jpg"],
     description:
-      "Минималистичный подсвечник ручной формовки. Уютный подарок к любому поводу.",
+      "Милый вязаный зайка Ромео ручной работы — в шортиках на лямках и белых башмачках. Тёплый подарок с характером, связанный с вниманием к деталям.",
   },
   {
     id: 5,
-    name: "Плед крупной вязки",
-    category: "интерьер",
-    color: "серый",
-    price: 8900,
-    tone: "#a89b93",
-    size: "140 × 180 см",
-    description:
-      "Плотный плед крупной вязки. Добавляет текстуру и тепло интерьеру.",
-  },
-  {
-    id: 6,
-    name: "Сумка макраме",
-    category: "аксессуары",
-    color: "бежевый",
-    price: 4700,
-    tone: "#c9a882",
-    size: "32 × 28 см",
-    description:
-      "Лёгкая сумка в технике макраме. Уникальный аксессуар на каждый день.",
-  },
-  {
-    id: 7,
-    name: "Фигурка «Лиса»",
-    category: "подарки",
-    color: "терракот",
-    price: 3500,
-    tone: "#b86b45",
-    size: "Высота 14 см",
-    description:
-      "Декоративная фигурка из керамики. Характерный подарок с настроением мастерской.",
-  },
-  {
-    id: 8,
-    name: "Подушка декоративная",
-    category: "интерьер",
+    name: "Зайка в платье",
+    category: "Зайки",
     color: "пыльная роза",
-    price: 3900,
+    price: 1700,
     tone: "#d4a8ad",
-    size: "45 × 45 см",
+    size: "Рост 28 см",
+    image: "images/bunny-dress-1.jpg",
+    images: [
+      "images/bunny-dress-1.jpg",
+      "images/bunny-dress-2.png",
+    ],
     description:
-      "Текстильная подушка с чехлом ручной работы. Мягкий цветовой акцент для дивана.",
+      "Мягкая плюшевая зайка ручной работы в нарядном платье. Платье связано крючком — с лёгкой юбкой и оборками. Отличный подарок ребёнку или украшение для уютного интерьера — каждый зайка создаётся вручную и с вниманием к деталям.",
   },
   {
-    id: 9,
-    name: "Брошь керамическая",
-    category: "аксессуары",
+    id: 16,
+    name: "Зайка в платье",
+    category: "Зайки",
     color: "кремовый",
-    price: 1800,
-    tone: "#e8d5bc",
-    size: "Ø 4 см",
+    price: 1700,
+    tone: "#e8a0a0",
+    size: "Рост 27 см",
+    image: "images/bunny-dress-knit.jpg",
+    images: ["images/bunny-dress-knit.jpg"],
     description:
-      "Небольшая керамическая брошь. Завершает образ тонкой деталью.",
+      "Мягкая плюшевая зайка ручной работы в нарядном платье. Платье связано спицами — с белыми сердечками, повязкой и башмачками в тон. Отличный подарок ребёнку или украшение для уютного интерьера — каждый зайка создаётся вручную и с вниманием к деталям.",
   },
+  {
+    id: 17,
+    name: "Мишка",
+    category: "Мишки",
+    color: "кремовый",
+    price: 1700,
+    tone: "#efe0cc",
+    size: "Рост 30 см",
+    image: "images/bear.jpg",
+    images: ["images/bear.jpg"],
+    description:
+      "Мягкий вязаный мишка ручной работы — уютный и очень тактильный. Благодаря шарнирам медвежонок может двигать всеми лапками, садиться и обнимать вас по-настоящему. Доступен в двух вариантах — в комбинезоне или в платье.",
+  },
+  {
+    id: 18,
+    name: "Зайка в платье",
+    category: "Зайки",
+    color: "пыльная роза",
+    price: 1700,
+    tone: "#d4a8ad",
+    size: "Рост 27 см",
+    image: "images/bunny-dress-crochet-2.png",
+    images: ["images/bunny-dress-crochet-2.png"],
+    description:
+      "Мягкая плюшевая зайка ручной работы в нарядном платье. Платье связано крючком — с оборками, повязкой и башмачками в тон. Отличный подарок ребёнку или украшение для уютного интерьера — каждый зайка создаётся вручную и с вниманием к деталям.",
+  },
+  {
+    id: 19,
+    name: "Оленёнок Ру",
+    category: "Новый год",
+    color: "бежевый",
+    price: 1400,
+    tone: "#c9a882",
+    size: "Рост 19 см",
+    yarn: "полухлопковая",
+    image: "images/reindeer-ru.jpg",
+    images: ["images/reindeer-ru.jpg"],
+    description:
+      "Милый вязаный оленёнок Ру — праздничный герой с рожками и полосатым нарядом. Тёплый новогодний подарок, созданный вручную с вниманием к деталям.",
+  },
+  {
+    id: 20,
+    name: "Новогодняя игрушка",
+    category: "Новый год",
+    color: "бежевый",
+    price: 1000,
+    tone: "#d4b896",
+    size: "12 см",
+    yarn: "полухлопковая",
+    image: "images/newyear-ornament.jpg",
+    images: ["images/newyear-ornament.jpg"],
+    description:
+      "Вязаная игрушка на ёлку ручной работы — уютный праздничный акцент для новогоднего декора.",
+  },
+  {
+    id: 11,
+    name: "Снеговик Юкии",
+    category: "Новый год",
+    color: "кремовый",
+    price: 2000,
+    tone: "#f0ebe3",
+    size: "Рост 18 см",
+    yarn: "полухлопковая",
+    image: "images/snowman-yukii.jpg",
+    images: ["images/snowman-yukii.jpg"],
+    description:
+      "Милый и добрый зимний друг, связанный вручную.",
+  },
+  {
+    id: 14,
+    name: "Новогодний мишка",
+    category: "Новый год",
+    color: "кремовый",
+    price: 1400,
+    tone: "#efe0cc",
+    size: "Рост 25 см",
+    image: "images/newyear-bear.jpg",
+    images: ["images/newyear-bear.jpg"],
+    description:
+      "Милый, плюшевый и такой добрый — создан для зимних вечеров и праздничного настроения.",
+  },
+  {
+    id: 15,
+    name: "Зайка в новогоднем костюме",
+    category: "Новый год",
+    color: "пыльная роза",
+    price: 1500,
+    tone: "#e8a0a0",
+    size: "Рост 27 см",
+    image: "images/bunny-newyear.jpg",
+    images: ["images/bunny-newyear.jpg"],
+    description:
+      "Мягкая, тёплая и такая уютная — она будто создана, чтобы дарить атмосферу праздника! Зайка станет отличным подарком для близких, порадует малышей и украсит интерьер в зимние дни.",
+  },
+  {
+    id: 12,
+    name: "Жираф",
+    category: "Игрушки",
+    color: "бежевый",
+    price: 2500,
+    tone: "#d4b896",
+    size: "Рост 21 см (без рожек и ушек)",
+    yarn: "полухлопковая",
+    image: "images/giraffe-1.jpg",
+    images: [
+      "images/giraffe-1.jpg",
+      "images/giraffe-2.jpg",
+    ],
+    description:
+      "Милый вязаный жираф ручной работы. Тельце можно сделать с пятнышками или без.",
+  },
+  
 ];
 
 const Store = {
@@ -126,6 +199,11 @@ const Store = {
     localStorage.setItem(key, JSON.stringify(value));
   },
 
+  _apiUrl(path) {
+    const inAdmin = window.location.pathname.includes("/admin/");
+    return `${inAdmin ? "../" : ""}api/${path}`;
+  },
+
   getUser() {
     return this._read("kk_user", null);
   },
@@ -136,54 +214,122 @@ const Store = {
 
   logout() {
     localStorage.removeItem("kk_user");
+    return fetch(this._apiUrl("logout.php"), {
+      method: "POST",
+      credentials: "include",
+      headers: { "Content-Type": "application/json" },
+      body: "{}",
+    }).catch(() => null);
   },
 
-  getUsers() {
-    return this._read("kk_users", [
-      {
-        email: "admin@knit.katarina",
-        password: "admin",
-        name: "Администратор",
-        phone: "",
-        role: "admin",
-      },
-    ]);
+  async register({ name, email, password, phone }) {
+    try {
+      const response = await fetch(this._apiUrl("register.php"), {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password, phone }),
+      });
+      const data = await response.json();
+      if (!data.ok) {
+        return { ok: false, error: data.error || "Не удалось зарегистрироваться" };
+      }
+      this.setUser(data.user);
+      return { ok: true, user: data.user };
+    } catch {
+      // Если PHP-сервер не запущен — сохраняем аккаунт локально, форма на сайте всё равно работает
+      return this._registerLocal({ name, email, password, phone });
+    }
   },
 
-  saveUsers(users) {
+  async login(email, password) {
+    try {
+      const response = await fetch(this._apiUrl("login.php"), {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email, password }),
+      });
+      const data = await response.json();
+      if (!data.ok) {
+        return { ok: false, error: data.error || "Неверный email или пароль" };
+      }
+      this.setUser(data.user);
+      return { ok: true, user: data.user };
+    } catch {
+      return this._loginLocal(email, password);
+    }
+  },
+
+  _getLocalUsers() {
+    return this._read("kk_users", []);
+  },
+
+  _saveLocalUsers(users) {
     this._write("kk_users", users);
   },
 
-  register({ name, email, password, phone }) {
-    const users = this.getUsers();
-    if (users.some((u) => u.email.toLowerCase() === email.toLowerCase())) {
+  _registerLocal({ name, email, password, phone }) {
+    const users = this._getLocalUsers();
+    if (users.some((u) => u.email.toLowerCase() === String(email).toLowerCase())) {
       return { ok: false, error: "Пользователь с таким email уже есть" };
     }
     const user = {
+      id: Date.now(),
       name,
-      email,
+      email: String(email).toLowerCase(),
       password,
       phone: phone || "",
       role: "user",
     };
     users.push(user);
-    this.saveUsers(users);
-    this.setUser({ name: user.name, email: user.email, phone: user.phone, role: user.role });
-    return { ok: true };
+    this._saveLocalUsers(users);
+    this.setUser({
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      phone: user.phone,
+      role: user.role,
+    });
+    return { ok: true, user: this.getUser() };
   },
 
-  login(email, password) {
-    const user = this.getUsers().find(
-      (u) => u.email.toLowerCase() === email.toLowerCase() && u.password === password
+  _loginLocal(email, password) {
+    const user = this._getLocalUsers().find(
+      (u) =>
+        u.email.toLowerCase() === String(email).toLowerCase() &&
+        u.password === password
     );
-    if (!user) return { ok: false, error: "Неверный email или пароль" };
+    if (!user) {
+      return { ok: false, error: "Неверный email или пароль" };
+    }
     this.setUser({
+      id: user.id,
       name: user.name,
       email: user.email,
       phone: user.phone || "",
       role: user.role,
     });
     return { ok: true, user: this.getUser() };
+  },
+
+  async refreshUser() {
+    try {
+      const response = await fetch(this._apiUrl("me.php"), { credentials: "include" });
+      const data = await response.json();
+      if (data.ok && data.user) {
+        this.setUser(data.user);
+        return data.user;
+      }
+      this.logoutLocal();
+      return null;
+    } catch {
+      return this.getUser();
+    }
+  },
+
+  logoutLocal() {
+    localStorage.removeItem("kk_user");
   },
 
   getFavorites() {

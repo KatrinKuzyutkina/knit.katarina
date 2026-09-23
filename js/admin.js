@@ -1,19 +1,32 @@
-if (!Store.requireAdmin()) {
-  /* redirect */
-} else {
+(async function initAdmin() {
+  await Store.refreshUser();
+
+  if (!Store.requireAdmin()) {
+    return;
+  }
+
   const logoutBtn = document.getElementById("admin-logout");
   if (logoutBtn) {
-    logoutBtn.addEventListener("click", () => {
-      Store.logout();
+    logoutBtn.addEventListener("click", async () => {
+      await Store.logout();
       window.location.href = "../home.html";
     });
+  }
+
+  let dbUsers = [];
+  try {
+    const response = await fetch(Store._apiUrl("users.php"), { credentials: "include" });
+    const data = await response.json();
+    if (data.ok) dbUsers = data.users || [];
+  } catch {
+    dbUsers = [];
   }
 
   const statsEl = document.getElementById("admin-stats");
   if (statsEl) {
     const orders = Store.getOrders();
     const requests = Store.getCustomRequests();
-    const clients = Store.getUsers().filter((u) => u.role !== "admin");
+    const clients = dbUsers.filter((u) => u.role !== "admin");
     const messages = Store.getMessages();
 
     statsEl.innerHTML = `
@@ -46,10 +59,12 @@ if (!Store.requireAdmin()) {
       const article = document.createElement("article");
       article.className = "product-card";
       article.innerHTML = `
-        <div class="product-card-media" style="--tone: ${item.tone}"></div>
+        <div class="product-card-media${item.image ? " has-image" : ""}" style="--tone: ${item.tone}">
+          ${item.image ? `<img src="../${item.image}" alt="${item.name}" />` : ""}
+        </div>
         <div class="product-card-body">
           <h2 class="product-card-title">${item.name}</h2>
-          <p class="product-card-meta">${item.category} · ${item.color}</p>
+          <p class="product-card-meta">${item.category}</p>
           <p class="product-card-price">${Store.formatPrice(item.price)}</p>
         </div>
       `;
@@ -97,20 +112,19 @@ if (!Store.requireAdmin()) {
 
   const clientsEl = document.getElementById("admin-clients");
   if (clientsEl) {
-    Store.getUsers()
-      .filter((u) => u.role !== "admin")
-      .forEach((client) => {
-        const row = document.createElement("article");
-        row.className = "list-row list-row-plain";
-        row.innerHTML = `
-          <div class="list-row-body">
-            <h2>${client.name}</h2>
-            <p>${client.email}</p>
-            <p>${client.phone || "телефон не указан"}</p>
-          </div>
-        `;
-        clientsEl.appendChild(row);
-      });
+    const clients = dbUsers.filter((u) => u.role !== "admin");
+    clients.forEach((client) => {
+      const row = document.createElement("article");
+      row.className = "list-row list-row-plain";
+      row.innerHTML = `
+        <div class="list-row-body">
+          <h2>${client.name}</h2>
+          <p>${client.email}</p>
+          <p>${client.phone || "телефон не указан"}</p>
+        </div>
+      `;
+      clientsEl.appendChild(row);
+    });
 
     if (!clientsEl.children.length) {
       clientsEl.innerHTML = '<p class="page-note">Пока нет зарегистрированных клиентов.</p>';
@@ -130,8 +144,12 @@ if (!Store.requireAdmin()) {
         <div class="list-row-body">
           <h2>${req.id} · ${req.type}</h2>
           <p>${req.name} · ${req.email} · ${req.phone || "—"}</p>
-          <p>${req.materials || "материалы не указаны"}</p>
-          <p>${req.description}</p>
+          <p>${
+            req.yarn
+              ? `Пряжа: ${req.yarn}${req.colorNumber ? ` · цвет № ${req.colorNumber}` : ""}`
+              : req.materials || "материалы не указаны"
+          }</p>
+          <p>${req.description || "без комментария"}</p>
           <label class="field inline-field">
             <span>Статус</span>
             <select data-request-status="${req.id}">
@@ -152,4 +170,4 @@ if (!Store.requireAdmin()) {
       });
     });
   }
-}
+})();

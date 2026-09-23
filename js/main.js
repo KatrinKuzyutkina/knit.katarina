@@ -1,4 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
+  if (typeof Store !== "undefined" && Store.refreshUser) {
+    await Store.refreshUser();
+  }
+
   const user = Store.getUser();
   const accountLink = document.querySelector(".header-account");
   if (accountLink && user) {

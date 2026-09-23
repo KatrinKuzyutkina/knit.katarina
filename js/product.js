@@ -12,18 +12,47 @@ if (!product) {
 } else {
   document.title = `${product.name} — knit.katarina`;
   const fav = Store.isFavorite(product.id);
+  const gallery = product.images && product.images.length
+    ? product.images
+    : product.image
+      ? [product.image]
+      : [];
+
+  const mediaHtml = gallery.length
+    ? `
+      <div class="product-gallery">
+        <div class="product-media has-image">
+          <img id="product-main-image" src="${gallery[0]}" alt="${product.name}" />
+        </div>
+        ${
+          gallery.length > 1
+            ? `<div class="product-thumbs">
+                ${gallery
+                  .map(
+                    (src, i) => `
+                  <button type="button" class="product-thumb${i === 0 ? " is-active" : ""}" data-src="${src}" aria-label="Фото ${i + 1}">
+                    <img src="${src}" alt="" />
+                  </button>`
+                  )
+                  .join("")}
+              </div>`
+            : ""
+        }
+      </div>
+    `
+    : `<div class="product-media" style="--tone: ${product.tone}" aria-hidden="true"></div>`;
 
   root.innerHTML = `
     <a class="text-link back-link" href="catalog.html">← В каталог</a>
     <div class="product-layout">
-      <div class="product-media" style="--tone: ${product.tone}" aria-hidden="true"></div>
+      ${mediaHtml}
       <div class="product-info">
-        <p class="product-meta">${product.category} · ${product.color}</p>
+        <p class="product-meta">${product.category}</p>
         <h1>${product.name}</h1>
         <p class="product-price">${Store.formatPrice(product.price)}</p>
         <p class="product-desc">${product.description}</p>
         <p class="product-size"><strong>Размер:</strong> ${product.size}</p>
-        <p class="product-unique">Единственный экземпляр</p>
+        <p class="product-unique">Ручная работа · ${product.yarn || "плюшевая"} пряжа</p>
         <div class="product-actions">
           <button type="button" class="btn btn-primary" id="add-cart">В корзину</button>
           <button type="button" class="btn btn-ghost" id="toggle-fav">${fav ? "В избранном" : "В избранное"}</button>
@@ -44,5 +73,15 @@ if (!product) {
     Store.toggleFavorite(product.id);
     const isFav = Store.isFavorite(product.id);
     e.currentTarget.textContent = isFav ? "В избранном" : "В избранное";
+  });
+
+  const mainImage = document.getElementById("product-main-image");
+  document.querySelectorAll(".product-thumb").forEach((thumb) => {
+    thumb.addEventListener("click", () => {
+      if (!mainImage) return;
+      mainImage.src = thumb.dataset.src;
+      document.querySelectorAll(".product-thumb").forEach((t) => t.classList.remove("is-active"));
+      thumb.classList.add("is-active");
+    });
   });
 }

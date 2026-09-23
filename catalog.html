@@ -29,9 +29,22 @@
   </header>
 
   <main class="catalog-page">
-    <div class="catalog-head">
+    <div class="catalog-hero">
+      <nav class="catalog-breadcrumbs" aria-label="Навигация по разделу">
+        <a href="home.html">Главная</a>
+        <span aria-hidden="true">/</span>
+        <span aria-current="page">Каталог</span>
+      </nav>
       <h1>Каталог</h1>
-      <p>Каждое изделие — в единственном экземпляре.</p>
+    </div>
+
+    <div class="catalog-chips" id="catalog-chips" role="tablist" aria-label="Категории">
+      <button type="button" class="catalog-chip is-active" data-category="all">Все</button>
+      <button type="button" class="catalog-chip" data-category="Новый год">Новый год</button>
+      <button type="button" class="catalog-chip" data-category="Зайки">Зайки</button>
+      <button type="button" class="catalog-chip" data-category="Мишки">Мишки</button>
+      <button type="button" class="catalog-chip" data-category="Игрушки">Игрушки</button>
+      <button type="button" class="catalog-chip" data-category="Одежда">Одежда</button>
     </div>
 
     <form class="catalog-filters" id="catalog-filters" aria-label="Фильтры каталога">
@@ -39,9 +52,11 @@
         <span>Категория</span>
         <select name="category" id="filter-category">
           <option value="all">Все</option>
-          <option value="интерьер">Интерьер</option>
-          <option value="подарки">Подарки</option>
-          <option value="аксессуары">Аксессуары</option>
+          <option value="Новый год">Новый год</option>
+          <option value="Зайки">Зайки</option>
+          <option value="Мишки">Мишки</option>
+          <option value="Игрушки">Игрушки</option>
+          <option value="Одежда">Одежда</option>
         </select>
       </label>
 

@@ -27,45 +27,108 @@
     </div>
   </header>
 
-  <main class="page narrow">
+  <main class="page page-order">
     <div class="page-head">
       <h1>Изделие на заказ</h1>
-      <p>Опишите идею — мастер оценит возможность и сроки изготовления.</p>
+      <p>Заполните форму — мастер оценит возможность и сроки изготовления.</p>
     </div>
 
     <form class="panel-form" id="custom-order-form">
       <label class="field">
         <span>Имя</span>
-        <input type="text" name="name" required />
+        <input type="text" name="name" required autocomplete="name" />
       </label>
       <label class="field">
-        <span>Email</span>
-        <input type="email" name="email" required />
+        <span>Почта</span>
+        <input type="email" name="email" required autocomplete="email" />
       </label>
       <label class="field">
         <span>Телефон</span>
-        <input type="tel" name="phone" />
+        <input type="tel" name="phone" required autocomplete="tel" />
       </label>
       <label class="field">
-        <span>Тип изделия</span>
-        <select name="type" required>
-          <option value="интерьер">Интерьер</option>
-          <option value="подарок">Подарок</option>
-          <option value="аксессуар">Аксессуар</option>
+        <span>Вид изделия</span>
+        <select name="type" id="product-type" required>
+          <option value="">Выберите вид</option>
+          <option value="игрушка">Игрушка</option>
+          <option value="одежда">Одежда</option>
+          <option value="новый год">Новый год</option>
           <option value="другое">Другое</option>
         </select>
       </label>
+
+      <div class="order-extra" id="toy-options" hidden>
+        <fieldset class="yarn-fieldset">
+          <legend>Выбор пряжи</legend>
+          <p class="page-note">Для игрушки выберите тип пряжи — ниже описание и примеры работ.</p>
+
+          <div class="yarn-options">
+            <label class="yarn-card">
+              <input type="radio" name="yarn" value="плюшевая" />
+              <span class="yarn-card-body">
+                <strong>Плюшевая</strong>
+                <span>
+                  Мягкая «пушистая» пряжа. Игрушки получаются объёмными, тактильно приятными,
+                  с бархатистой поверхностью. Хорошо держит форму у крупных деталей.
+                </span>
+              </span>
+            </label>
+            <label class="yarn-card">
+              <input type="radio" name="yarn" value="полухлопковая" />
+              <span class="yarn-card-body">
+                <strong>Полухлопковая</strong>
+                <span>
+                  Более плотная и «чёткая» вязка. Подходит для мелкой детализации мордочки и лапок,
+                  легче в уходе, меньше скатывается при частых объятиях.
+                </span>
+              </span>
+            </label>
+          </div>
+        </fieldset>
+
+        <section class="yarn-examples" id="yarn-examples-plush" hidden>
+          <h2>Примеры игрушек из плюшевой пряжи</h2>
+          <div class="order-photo-grid">
+            <figure class="order-photo" style="--tone:#e8b4a0"><figcaption>Плюш · пример 1</figcaption></figure>
+            <figure class="order-photo" style="--tone:#d4a090"><figcaption>Плюш · пример 2</figcaption></figure>
+            <figure class="order-photo" style="--tone:#c9929a"><figcaption>Плюш · пример 3</figcaption></figure>
+          </div>
+        </section>
+
+        <section class="yarn-examples" id="yarn-examples-cotton" hidden>
+          <h2>Примеры игрушек из полухлопковой пряжи</h2>
+          <div class="order-photo-grid">
+            <figure class="order-photo" style="--tone:#d4b896"><figcaption>Хлопок · пример 1</figcaption></figure>
+            <figure class="order-photo" style="--tone:#c9a882"><figcaption>Хлопок · пример 2</figcaption></figure>
+            <figure class="order-photo" style="--tone:#efe0cc"><figcaption>Хлопок · пример 3</figcaption></figure>
+          </div>
+        </section>
+
+        <section class="color-palette" id="color-palette" hidden>
+          <h2>Палитра цветов</h2>
+          <p class="page-note">Посмотрите образцы и укажите номер выбранного цвета.</p>
+          <div class="order-photo-grid palette-grid" id="palette-grid"></div>
+          <label class="field">
+            <span>Номер цвета</span>
+            <input
+              type="text"
+              name="colorNumber"
+              id="color-number"
+              placeholder="Например: 3"
+              inputmode="numeric"
+            />
+          </label>
+        </section>
+      </div>
+
       <label class="field">
-        <span>Желаемый цвет / материалы</span>
-        <input type="text" name="materials" placeholder="Например: терракот, джут, шерсть" />
+        <span>Комментарий к заказу</span>
+        <textarea name="description" rows="4" placeholder="Размер, образ, для кого — по желанию"></textarea>
       </label>
-      <label class="field">
-        <span>Описание идеи</span>
-        <textarea name="description" rows="5" required placeholder="Размер, стиль, для кого, референсы..."></textarea>
-      </label>
+
       <button type="submit" class="btn btn-primary">Отправить заявку</button>
       <p class="form-status" id="custom-status" hidden></p>
-      <p class="page-note">Для отправки заявки нужна регистрация — мы сохраним её в вашем кабинете и у администратора.</p>
+      <p class="page-note">Для отправки заявки нужна регистрация — мы сохраним её в кабинете и у администратора.</p>
     </form>
   </main>
 

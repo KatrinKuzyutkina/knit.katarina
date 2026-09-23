@@ -17,7 +17,7 @@ function renderFavorites() {
         <div class="product-card-media" style="--tone: ${item.tone}" aria-hidden="true"></div>
         <div class="product-card-body">
           <h2 class="product-card-title">${item.name}</h2>
-          <p class="product-card-meta">${item.category} · ${item.color}</p>
+          <p class="product-card-meta">${item.category}</p>
           <p class="product-card-price">${Store.formatPrice(item.price)}</p>
         </div>
       </a>

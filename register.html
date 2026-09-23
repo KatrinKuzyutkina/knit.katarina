@@ -30,29 +30,29 @@
   <main class="page narrow">
     <div class="page-head">
       <h1>Регистрация</h1>
-      <p>Создайте аккаунт, чтобы оформлять заказы и сохранять избранное.</p>
+      <p>Заполните форму ниже — аккаунт создаётся прямо на сайте.</p>
     </div>
 
     <form class="panel-form" id="register-form">
       <label class="field">
         <span>Имя</span>
-        <input type="text" name="name" required />
+        <input type="text" name="name" required autocomplete="name" />
       </label>
       <label class="field">
         <span>Email</span>
-        <input type="email" name="email" required />
+        <input type="email" name="email" required autocomplete="email" />
       </label>
       <label class="field">
         <span>Телефон</span>
-        <input type="tel" name="phone" />
+        <input type="tel" name="phone" autocomplete="tel" />
       </label>
       <label class="field">
         <span>Пароль</span>
-        <input type="password" name="password" minlength="4" required />
+        <input type="password" name="password" minlength="4" required autocomplete="new-password" />
       </label>
-      <button type="submit" class="btn btn-primary">Создать аккаунт</button>
+      <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
       <p class="form-status error" id="register-error" hidden></p>
-      <p class="page-note">Уже есть аккаунт? <a class="text-link" href="login.html">Войти</a></p>
+      <p class="page-note">Уже есть аккаунт? <a class="text-link" href="login.html">Войти на сайт</a></p>
     </form>
   </main>
 
