@@ -7,23 +7,30 @@
   <meta name="theme-color" content="#c47a52" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" /></noscript>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="site-header">
     <a class="logo" href="home.html">knit.katarina</a>
-    <nav class="nav" aria-label="Основная навигация">
+    <nav class="nav" id="site-nav" aria-label="Основная навигация">
       <a href="catalog.html">Каталог</a>
       <a href="about.html">О мастерской</a>
       <a href="custom-order.html">На заказ</a>
       <a href="delivery.html">Доставка</a>
+      <a href="reviews.html">Отзывы</a>
       <a href="contacts.html">Контакты</a>
     </nav>
     <div class="header-actions">
       <a href="favorites.html" aria-label="Избранное">♡</a>
       <a href="cart.html" aria-label="Корзина">Корзина</a>
       <a class="header-account" href="account.html">Кабинет</a>
+      <button type="button" class="nav-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 

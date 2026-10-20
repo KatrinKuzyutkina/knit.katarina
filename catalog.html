@@ -8,23 +8,30 @@
   <meta name="theme-color" content="#c47a52" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" /></noscript>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="site-header">
     <a class="logo" href="home.html">knit.katarina</a>
-    <nav class="nav" aria-label="Основная навигация">
+    <nav class="nav" id="site-nav" aria-label="Основная навигация">
       <a href="catalog.html" aria-current="page">Каталог</a>
       <a href="about.html">О мастерской</a>
       <a href="custom-order.html">На заказ</a>
       <a href="delivery.html">Доставка</a>
+      <a href="reviews.html">Отзывы</a>
       <a href="contacts.html">Контакты</a>
     </nav>
     <div class="header-actions">
       <a href="favorites.html" aria-label="Избранное">♡</a>
       <a href="cart.html" aria-label="Корзина">Корзина</a>
       <a class="header-account" href="account.html">Кабинет</a>
+      <button type="button" class="nav-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
@@ -38,48 +45,101 @@
       <h1>Каталог</h1>
     </div>
 
-    <div class="catalog-chips" id="catalog-chips" role="tablist" aria-label="Категории">
-      <button type="button" class="catalog-chip is-active" data-category="all">Все</button>
-      <button type="button" class="catalog-chip" data-category="Новый год">Новый год</button>
-      <button type="button" class="catalog-chip" data-category="Зайки">Зайки</button>
-      <button type="button" class="catalog-chip" data-category="Мишки">Мишки</button>
-      <button type="button" class="catalog-chip" data-category="Игрушки">Игрушки</button>
-      <button type="button" class="catalog-chip" data-category="Одежда">Одежда</button>
-    </div>
-
     <form class="catalog-filters" id="catalog-filters" aria-label="Фильтры каталога">
-      <label class="filter-field">
-        <span>Категория</span>
-        <select name="category" id="filter-category">
-          <option value="all">Все</option>
-          <option value="Новый год">Новый год</option>
-          <option value="Зайки">Зайки</option>
-          <option value="Мишки">Мишки</option>
-          <option value="Игрушки">Игрушки</option>
-          <option value="Одежда">Одежда</option>
-        </select>
-      </label>
+      <div class="filter-field">
+        <span id="category-filter-label">Категория</span>
+        <div class="filter-dropdown" data-dropdown="category">
+          <button
+            type="button"
+            class="filter-dropdown-toggle"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-labelledby="category-filter-label"
+          >
+            <span class="filter-dropdown-summary" data-summary>Все</span>
+          </button>
+          <div class="filter-dropdown-menu" role="listbox" hidden>
+            <button type="button" class="filter-option is-selected" role="option" data-value="all" aria-selected="true">Все</button>
+            <button type="button" class="filter-option" role="option" data-value="Новый год" aria-selected="false">Новый год</button>
+            <button type="button" class="filter-option" role="option" data-value="Зайки" aria-selected="false">Зайки</button>
+            <button type="button" class="filter-option" role="option" data-value="Мишки" aria-selected="false">Мишки</button>
+            <button type="button" class="filter-option" role="option" data-value="Игрушки" aria-selected="false">Игрушки</button>
+            <button type="button" class="filter-option" role="option" data-value="Одежда" aria-selected="false">Одежда</button>
+          </div>
+        </div>
+      </div>
 
-      <label class="filter-field">
-        <span>Цвет</span>
-        <select name="color" id="filter-color">
-          <option value="all">Все</option>
-          <option value="терракот">Терракот</option>
-          <option value="бежевый">Бежевый</option>
-          <option value="кремовый">Кремовый</option>
-          <option value="серый">Серый</option>
-          <option value="пыльная роза">Пыльная роза</option>
-        </select>
-      </label>
+      <div class="filter-field">
+        <span id="color-filter-label">Цвет</span>
+        <div class="filter-dropdown" data-dropdown="color">
+          <button
+            type="button"
+            class="filter-dropdown-toggle"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-labelledby="color-filter-label"
+          >
+            <span class="filter-dropdown-summary" data-summary>Все цвета</span>
+          </button>
+          <div class="filter-dropdown-menu" role="listbox" aria-multiselectable="true" hidden>
+            <label class="filter-option filter-option-check">
+              <input type="checkbox" name="color" value="розовый" />
+              <span class="color-chip-dot" style="--swatch:#e8a0b0"></span>
+              <span>Розовый</span>
+            </label>
+            <label class="filter-option filter-option-check">
+              <input type="checkbox" name="color" value="оранжевый" />
+              <span class="color-chip-dot" style="--swatch:#e89a6c"></span>
+              <span>Оранжевый</span>
+            </label>
+            <label class="filter-option filter-option-check">
+              <input type="checkbox" name="color" value="бежевый" />
+              <span class="color-chip-dot" style="--swatch:#d4b896"></span>
+              <span>Бежевый</span>
+            </label>
+            <label class="filter-option filter-option-check">
+              <input type="checkbox" name="color" value="бордовый" />
+              <span class="color-chip-dot" style="--swatch:#8a3a4a"></span>
+              <span>Бордовый</span>
+            </label>
+            <label class="filter-option filter-option-check">
+              <input type="checkbox" name="color" value="белый" />
+              <span class="color-chip-dot" style="--swatch:#f7f2ec"></span>
+              <span>Белый</span>
+            </label>
+            <label class="filter-option filter-option-check">
+              <input type="checkbox" name="color" value="зеленый" />
+              <span class="color-chip-dot" style="--swatch:#6a8f6a"></span>
+              <span>Зелёный</span>
+            </label>
+            <label class="filter-option filter-option-check">
+              <input type="checkbox" name="color" value="красный" />
+              <span class="color-chip-dot" style="--swatch:#c45c5c"></span>
+              <span>Красный</span>
+            </label>
+          </div>
+        </div>
+      </div>
 
-      <label class="filter-field">
-        <span>Сортировка</span>
-        <select name="sort" id="filter-sort">
-          <option value="default">По умолчанию</option>
-          <option value="price-asc">Цена: по возрастанию</option>
-          <option value="price-desc">Цена: по убыванию</option>
-        </select>
-      </label>
+      <div class="filter-field">
+        <span id="sort-filter-label">Сортировка</span>
+        <div class="filter-dropdown" data-dropdown="sort">
+          <button
+            type="button"
+            class="filter-dropdown-toggle"
+            aria-haspopup="listbox"
+            aria-expanded="false"
+            aria-labelledby="sort-filter-label"
+          >
+            <span class="filter-dropdown-summary" data-summary>По умолчанию</span>
+          </button>
+          <div class="filter-dropdown-menu" role="listbox" hidden>
+            <button type="button" class="filter-option is-selected" role="option" data-value="default" aria-selected="true">По умолчанию</button>
+            <button type="button" class="filter-option" role="option" data-value="price-asc" aria-selected="false">Цена: по возрастанию</button>
+            <button type="button" class="filter-option" role="option" data-value="price-desc" aria-selected="false">Цена: по убыванию</button>
+          </div>
+        </div>
+      </div>
 
       <p class="catalog-count" id="catalog-count" aria-live="polite"></p>
     </form>

@@ -4,132 +4,195 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Заказ на изготовление — knit.katarina</title>
+  <meta name="description" content="Закажите игрушку или букет цветов ручной работы в мастерской knit.katarina." />
   <meta name="theme-color" content="#c47a52" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" /></noscript>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="site-header">
     <a class="logo" href="home.html">knit.katarina</a>
-    <nav class="nav" aria-label="Основная навигация">
+    <nav class="nav" id="site-nav" aria-label="Основная навигация">
       <a href="catalog.html">Каталог</a>
       <a href="about.html">О мастерской</a>
       <a href="custom-order.html" aria-current="page">На заказ</a>
       <a href="delivery.html">Доставка</a>
+      <a href="reviews.html">Отзывы</a>
       <a href="contacts.html">Контакты</a>
     </nav>
     <div class="header-actions">
       <a href="favorites.html" aria-label="Избранное">♡</a>
       <a href="cart.html" aria-label="Корзина">Корзина</a>
       <a class="header-account" href="account.html">Кабинет</a>
+      <button type="button" class="nav-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
-  <main class="page page-order">
-    <div class="page-head">
-      <h1>Изделие на заказ</h1>
-      <p>Заполните форму — мастер оценит возможность и сроки изготовления.</p>
+  <main class="page order-page">
+    <div class="auth-gate" id="auth-gate" hidden>
+      <h1>Сначала войдите в аккаунт</h1>
+      <p>Заявку на изготовление можно отправить только авторизованным пользователям. Контакты возьмём из личного кабинета.</p>
+      <a class="btn btn-primary" id="auth-gate-login" href="login.html">Войти</a>
     </div>
 
-    <form class="panel-form" id="custom-order-form">
-      <label class="field">
-        <span>Имя</span>
-        <input type="text" name="name" required autocomplete="name" />
-      </label>
-      <label class="field">
-        <span>Почта</span>
-        <input type="email" name="email" required autocomplete="email" />
-      </label>
-      <label class="field">
-        <span>Телефон</span>
-        <input type="tel" name="phone" required autocomplete="tel" />
-      </label>
-      <label class="field">
-        <span>Вид изделия</span>
-        <select name="type" id="product-type" required>
-          <option value="">Выберите вид</option>
-          <option value="игрушка">Игрушка</option>
-          <option value="одежда">Одежда</option>
-          <option value="новый год">Новый год</option>
-          <option value="другое">Другое</option>
-        </select>
-      </label>
+    <div id="order-content">
+      <section class="order-intro">
+        <h1>Изделие на заказ</h1>
+        <p class="order-lead">
+          Выберите, что хотите заказать, опишите идею или приложите фото —
+          контакты уже есть в вашем кабинете.
+        </p>
+      </section>
 
-      <div class="order-extra" id="toy-options" hidden>
-        <fieldset class="yarn-fieldset">
-          <legend>Выбор пряжи</legend>
-          <p class="page-note">Для игрушки выберите тип пряжи — ниже описание и примеры работ.</p>
+      <form class="order-form" id="custom-order-form">
+        <section class="order-sheet" aria-labelledby="order-type-title">
+          <h2 id="order-type-title">Что заказать</h2>
+          <p class="order-sheet-note">Выберите тип изделия.</p>
 
-          <div class="yarn-options">
-            <label class="yarn-card">
-              <input type="radio" name="yarn" value="плюшевая" />
-              <span class="yarn-card-body">
-                <strong>Плюшевая</strong>
+          <div class="order-choice-grid">
+            <label class="order-choice">
+              <input type="radio" name="type" value="игрушка" required />
+              <span class="order-choice-body">
+                <strong>Игрушка</strong>
                 <span>
-                  Мягкая «пушистая» пряжа. Игрушки получаются объёмными, тактильно приятными,
-                  с бархатистой поверхностью. Хорошо держит форму у крупных деталей.
+                  Зайка, мишка или другой герой по вашему желанию. Можно выбрать образ,
+                  размер и детали — для подарка или уютного декора.
                 </span>
               </span>
             </label>
-            <label class="yarn-card">
-              <input type="radio" name="yarn" value="полухлопковая" />
-              <span class="yarn-card-body">
-                <strong>Полухлопковая</strong>
+            <label class="order-choice">
+              <input type="radio" name="type" value="букет цветов" required />
+              <span class="order-choice-body">
+                <strong>Букет цветов</strong>
                 <span>
-                  Более плотная и «чёткая» вязка. Подходит для мелкой детализации мордочки и лапок,
-                  легче в уходе, меньше скатывается при частых объятиях.
+                  Розы, тюльпаны или другие цветы. Отлично подходит для подарка, декора или особого случая.
                 </span>
               </span>
             </label>
           </div>
-        </fieldset>
-
-        <section class="yarn-examples" id="yarn-examples-plush" hidden>
-          <h2>Примеры игрушек из плюшевой пряжи</h2>
-          <div class="order-photo-grid">
-            <figure class="order-photo" style="--tone:#e8b4a0"><figcaption>Плюш · пример 1</figcaption></figure>
-            <figure class="order-photo" style="--tone:#d4a090"><figcaption>Плюш · пример 2</figcaption></figure>
-            <figure class="order-photo" style="--tone:#c9929a"><figcaption>Плюш · пример 3</figcaption></figure>
-          </div>
         </section>
 
-        <section class="yarn-examples" id="yarn-examples-cotton" hidden>
-          <h2>Примеры игрушек из полухлопковой пряжи</h2>
-          <div class="order-photo-grid">
-            <figure class="order-photo" style="--tone:#d4b896"><figcaption>Хлопок · пример 1</figcaption></figure>
-            <figure class="order-photo" style="--tone:#c9a882"><figcaption>Хлопок · пример 2</figcaption></figure>
-            <figure class="order-photo" style="--tone:#efe0cc"><figcaption>Хлопок · пример 3</figcaption></figure>
-          </div>
-        </section>
+        <section class="order-sheet" id="idea-section" hidden aria-labelledby="order-idea-title">
+          <h2 id="order-idea-title">Опишите идею</h2>
+          <p class="order-sheet-note">Можно написать словами, прикрепить фото или сделать и то и другое.</p>
 
-        <section class="color-palette" id="color-palette" hidden>
-          <h2>Палитра цветов</h2>
-          <p class="page-note">Посмотрите образцы и укажите номер выбранного цвета.</p>
-          <div class="order-photo-grid palette-grid" id="palette-grid"></div>
           <label class="field">
-            <span>Номер цвета</span>
+            <span>Описание</span>
+            <textarea
+              name="description"
+              id="order-description"
+              rows="4"
+              placeholder="Какая игрушка нужна: размер, образ, детали…"
+            ></textarea>
+          </label>
+
+          <div class="field order-file-field">
+            <span>Фото-пример</span>
+            <label class="order-file-btn" for="order-photo">
+              <input type="file" name="photo" id="order-photo" accept="image/*" />
+              <span class="order-file-btn-text" id="order-photo-label">Прикрепить фото</span>
+            </label>
+          </div>
+          <div class="order-photo-preview" id="photo-preview" hidden>
+            <img id="photo-preview-img" alt="Превью прикреплённого фото" />
+            <button type="button" class="btn btn-ghost btn-small" id="photo-clear">Убрать фото</button>
+          </div>
+        </section>
+
+        <section class="order-sheet" id="deadline-section" hidden aria-labelledby="order-deadline-title">
+          <h2 id="order-deadline-title">Срок</h2>
+          <p class="order-sheet-note">К какому числу нужно изделие или сделать по готовности.</p>
+
+          <div class="order-choice-grid order-choice-grid-compact">
+            <label class="order-choice">
+              <input type="radio" name="deadlineMode" value="date" />
+              <span class="order-choice-body">
+                <strong>К дате</strong>
+                <span>Выберите число в календаре</span>
+              </span>
+            </label>
+            <label class="order-choice">
+              <input type="radio" name="deadlineMode" value="ready" />
+              <span class="order-choice-body">
+                <strong>По готовности</strong>
+                <span>Без фиксированной даты</span>
+              </span>
+            </label>
+          </div>
+
+          <label class="field order-date-field" id="deadline-date-wrap" hidden>
+            <span>Дата готовности</span>
+            <input type="date" name="deadlineDate" id="deadline-date" />
+          </label>
+        </section>
+
+        <section class="order-sheet" id="yarn-section" hidden aria-labelledby="order-yarn-title">
+          <h2 id="order-yarn-title">Пряжа</h2>
+          <p class="order-sheet-note">Выберите, из какой пряжи связать игрушку.</p>
+
+          <div class="yarn-pick-grid">
+            <label class="yarn-pick">
+              <input type="radio" name="yarn" value="плюшевая" />
+              <span class="yarn-pick-body">
+                <img src="images/yarn-plush.jpg" alt="Пример игрушки из плюшевой пряжи" />
+                <strong>Плюшевая</strong>
+                <span>Мягкая, объёмная, «пушистая»</span>
+              </span>
+            </label>
+            <label class="yarn-pick">
+              <input type="radio" name="yarn" value="полухлопковая" />
+              <span class="yarn-pick-body">
+                <img src="images/yarn-cotton.jpg" alt="Пример игрушки из полухлопковой пряжи" />
+                <strong>Полухлопковая</strong>
+                <span>Чёткая вязка и мелкая детализация</span>
+              </span>
+            </label>
+          </div>
+        </section>
+
+        <section class="order-sheet" id="palette-section" hidden aria-labelledby="order-palette-title">
+          <h2 id="order-palette-title">Палитра</h2>
+          <p class="order-sheet-note" id="palette-note">
+            Посмотрите образцы и укажите номер выбранной пряжи.
+          </p>
+
+          <div class="palette-boards" id="palette-grid"></div>
+
+          <label class="field" id="color-number-wrap">
+            <span>Номер пряжи из палитры</span>
             <input
               type="text"
               name="colorNumber"
               id="color-number"
-              placeholder="Например: 3"
+              placeholder="Например: 80301"
               inputmode="numeric"
             />
           </label>
+
+          <label class="field" id="flower-colors-wrap" hidden>
+            <span>Цвета цветов</span>
+            <textarea
+              name="flowerColors"
+              id="flower-colors"
+              rows="4"
+              placeholder="Например: розы — 90, тюльпаны — 67, листья — 52"
+            ></textarea>
+          </label>
         </section>
-      </div>
 
-      <label class="field">
-        <span>Комментарий к заказу</span>
-        <textarea name="description" rows="4" placeholder="Размер, образ, для кого — по желанию"></textarea>
-      </label>
-
-      <button type="submit" class="btn btn-primary">Отправить заявку</button>
-      <p class="form-status" id="custom-status" hidden></p>
-      <p class="page-note">Для отправки заявки нужна регистрация — мы сохраним её в кабинете и у администратора.</p>
-    </form>
+        <div class="order-submit" id="order-submit" hidden>
+          <button type="submit" class="btn btn-primary" id="order-submit-btn">Отправить заявку</button>
+        </div>
+        <p class="form-status" id="custom-status" hidden></p>
+      </form>
+    </div>
   </main>
 
   <footer class="site-footer">

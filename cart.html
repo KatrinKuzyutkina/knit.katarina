@@ -7,75 +7,114 @@
   <meta name="theme-color" content="#c47a52" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" /></noscript>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="site-header">
     <a class="logo" href="home.html">knit.katarina</a>
-    <nav class="nav" aria-label="Основная навигация">
+    <nav class="nav" id="site-nav" aria-label="Основная навигация">
       <a href="catalog.html">Каталог</a>
       <a href="about.html">О мастерской</a>
       <a href="custom-order.html">На заказ</a>
       <a href="delivery.html">Доставка</a>
+      <a href="reviews.html">Отзывы</a>
       <a href="contacts.html">Контакты</a>
     </nav>
     <div class="header-actions">
       <a href="favorites.html" aria-label="Избранное">♡</a>
       <a href="cart.html" aria-current="page" aria-label="Корзина">Корзина</a>
       <a class="header-account" href="account.html">Кабинет</a>
+      <button type="button" class="nav-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
   <main class="page">
-    <div class="page-head">
-      <h1>Корзина</h1>
-      <p>Оформление заказа уникальных изделий.</p>
+    <div class="auth-gate" id="auth-gate" hidden>
+      <h1>Сначала войдите в аккаунт</h1>
+      <p>Корзина доступна только авторизованным пользователям.</p>
+      <a class="btn btn-primary" id="auth-gate-login" href="login.html">Войти</a>
     </div>
 
-    <div id="cart-list" class="stack-list"></div>
-    <p class="catalog-empty" id="cart-empty" hidden>
-      Корзина пуста. <a class="text-link" href="catalog.html">Перейти в каталог →</a>
-    </p>
+    <div id="cart-content">
+      <div class="page-head">
+        <h1>Корзина</h1>
+        <p>Оформление заказа уникальных изделий.</p>
+      </div>
 
-    <form class="panel-form" id="checkout-form" hidden>
-      <h2>Оформление заказа</h2>
-      <label class="field">
-        <span>Имя</span>
-        <input type="text" name="name" required />
-      </label>
-      <label class="field">
-        <span>Телефон</span>
-        <input type="tel" name="phone" required />
-      </label>
-      <label class="field">
-        <span>Email</span>
-        <input type="email" name="email" required />
-      </label>
-      <label class="field">
-        <span>Способ доставки</span>
-        <select name="delivery" required>
-          <option value="courier">Курьер по городу</option>
-          <option value="pickup">Самовывоз</option>
-          <option value="post">Почта / СДЭК</option>
-        </select>
-      </label>
-      <label class="field">
-        <span>Способ оплаты</span>
-        <select name="payment" required>
-          <option value="card">Картой при получении</option>
-          <option value="transfer">Перевод</option>
-          <option value="cash">Наличными</option>
-        </select>
-      </label>
-      <label class="field">
-        <span>Адрес / комментарий</span>
-        <textarea name="address" rows="3"></textarea>
-      </label>
-      <p class="cart-total" id="cart-total"></p>
-      <button type="submit" class="btn btn-primary">Оформить заказ</button>
-      <p class="form-status" id="checkout-status" hidden></p>
-    </form>
+      <div id="cart-list" class="stack-list"></div>
+      <p class="catalog-empty" id="cart-empty" hidden>
+        Корзина пуста. <a class="text-link" href="catalog.html">Перейти в каталог →</a>
+      </p>
+
+      <form class="panel-form" id="checkout-form" hidden>
+        <h2>Оформление заказа</h2>
+        <label class="field">
+          <span>Имя</span>
+          <input type="text" name="name" required />
+        </label>
+        <label class="field">
+          <span>Телефон</span>
+          <input type="tel" name="phone" required />
+        </label>
+        <label class="field">
+          <span>Email</span>
+          <input type="email" name="email" required />
+        </label>
+        <div class="field">
+          <span id="delivery-label">Способ доставки</span>
+          <div class="filter-dropdown checkout-dropdown" data-dropdown="delivery">
+            <input type="hidden" name="delivery" id="delivery-input" value="Самовывоз" required />
+            <button
+              type="button"
+              class="filter-dropdown-toggle"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-labelledby="delivery-label"
+            >
+              <span class="filter-dropdown-summary" data-summary>Самовывоз</span>
+            </button>
+            <div class="filter-dropdown-menu" role="listbox" hidden>
+              <button type="button" class="filter-option is-selected" role="option" data-value="Самовывоз" aria-selected="true">Самовывоз</button>
+              <button type="button" class="filter-option" role="option" data-value="Доставка по городу" aria-selected="false">Доставка по городу</button>
+              <button type="button" class="filter-option" role="option" data-value="Почта" aria-selected="false">Почта</button>
+              <button type="button" class="filter-option" role="option" data-value="СДЭК" aria-selected="false">СДЭК</button>
+            </div>
+          </div>
+        </div>
+        <div class="field">
+          <span id="payment-label">Способ оплаты</span>
+          <div class="filter-dropdown checkout-dropdown" data-dropdown="payment">
+            <input type="hidden" name="payment" id="payment-input" value="Перевод" required />
+            <button
+              type="button"
+              class="filter-dropdown-toggle"
+              aria-haspopup="listbox"
+              aria-expanded="false"
+              aria-labelledby="payment-label"
+            >
+              <span class="filter-dropdown-summary" data-summary>Перевод</span>
+            </button>
+            <div class="filter-dropdown-menu" role="listbox" hidden>
+              <button type="button" class="filter-option is-selected" role="option" data-value="Перевод" aria-selected="true">Перевод</button>
+              <button type="button" class="filter-option" role="option" data-value="Наличные" data-pickup-only aria-selected="false">Наличные</button>
+            </div>
+          </div>
+        </div>
+        <label class="field">
+          <span>Адрес / комментарий</span>
+          <textarea name="address" rows="3"></textarea>
+        </label>
+        <p class="cart-total" id="cart-total"></p>
+        <button type="submit" class="btn btn-primary">Оформить заказ</button>
+        <p class="form-status" id="checkout-status" hidden></p>
+      </form>
+    </div>
   </main>
 
   <footer class="site-footer">

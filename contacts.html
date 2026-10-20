@@ -4,62 +4,123 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Контакты — knit.katarina</title>
+  <meta name="description" content="Свяжитесь с мастерской knit.katarina — форма обратной связи и мессенджеры." />
   <meta name="theme-color" content="#c47a52" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" /></noscript>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="site-header">
     <a class="logo" href="home.html">knit.katarina</a>
-    <nav class="nav" aria-label="Основная навигация">
+    <nav class="nav" id="site-nav" aria-label="Основная навигация">
       <a href="catalog.html">Каталог</a>
       <a href="about.html">О мастерской</a>
       <a href="custom-order.html">На заказ</a>
       <a href="delivery.html">Доставка</a>
+      <a href="reviews.html">Отзывы</a>
       <a href="contacts.html" aria-current="page">Контакты</a>
     </nav>
     <div class="header-actions">
       <a href="favorites.html" aria-label="Избранное">♡</a>
       <a href="cart.html" aria-label="Корзина">Корзина</a>
       <a class="header-account" href="account.html">Кабинет</a>
+      <button type="button" class="nav-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
-  <main class="page">
-    <div class="page-head">
+  <main class="page contacts-page">
+    <section class="contacts-intro">
       <h1>Контакты</h1>
-      <p>Напишите нам или свяжитесь в удобном мессенджере.</p>
-    </div>
+      <p class="contacts-lead">
+        Напишите через форму или выберите удобный мессенджер —
+        ответим в рабочие дни, обычно в течение суток.
+      </p>
+    </section>
 
-    <div class="two-col">
-      <form class="panel-form" id="contact-form">
-        <h2>Обратная связь</h2>
-        <label class="field">
-          <span>Имя</span>
-          <input type="text" name="name" required />
-        </label>
-        <label class="field">
-          <span>Email</span>
-          <input type="email" name="email" required />
-        </label>
-        <label class="field">
-          <span>Сообщение</span>
-          <textarea name="message" rows="5" required></textarea>
-        </label>
-        <button type="submit" class="btn btn-primary">Отправить</button>
-        <p class="form-status" id="contact-status" hidden></p>
-      </form>
+    <div class="contacts-layout">
+      <section class="contacts-sheet" aria-labelledby="contact-form-title">
+        <h2 id="contact-form-title">Обратная связь</h2>
+        <p class="contacts-sheet-note">Расскажите о заказе, вопросе или идее для игрушки.</p>
 
-      <aside class="panel">
-        <h2>Мессенджеры и соцсети</h2>
-        <ul class="contact-links">
-          <li><a href="https://t.me/knitkatarina" target="_blank" rel="noopener">Telegram</a></li>
-          <li><a href="https://instagram.com/knit.katarina" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="https://vk.com/knit.katarina" target="_blank" rel="noopener">ВКонтакте</a></li>
-        </ul>
-        <p class="page-note">Отвечаем в рабочие дни, обычно в течение суток.</p>
+        <form class="contacts-form" id="contact-form">
+          <div class="contacts-form-row">
+            <label class="field">
+              <span>Имя</span>
+              <input type="text" name="name" required autocomplete="name" placeholder="Как к вам обращаться" />
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input type="email" name="email" required autocomplete="email" placeholder="you@example.com" />
+            </label>
+          </div>
+          <label class="field">
+            <span>Сообщение</span>
+            <textarea name="message" rows="3" required placeholder="Ваш вопрос или пожелание"></textarea>
+          </label>
+          <button type="submit" class="btn btn-primary">Отправить</button>
+          <p class="form-status" id="contact-status" hidden></p>
+        </form>
+      </section>
+
+      <aside class="contacts-aside">
+        <section class="contacts-sheet contacts-channels" aria-labelledby="contact-channels-title">
+          <h2 id="contact-channels-title">Мессенджеры</h2>
+          <p class="contacts-sheet-note">Быстрее всего отвечаем здесь.</p>
+
+          <ul class="contacts-channel-list">
+            <li>
+              <a class="contacts-channel" href="https://t.me/knitkatarina" target="_blank" rel="noopener">
+                <span class="contacts-channel-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M20.5 4.5L3.8 11.2c-.8.3-.8 1.5.1 1.7l4.1 1.2 1.6 5c.2.7 1.1.9 1.6.4l2.3-2.4 4.2 3.1c.6.4 1.4.1 1.6-.6L21.7 5.6c.2-.9-.7-1.5-1.2-1.1z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                  </svg>
+                </span>
+                <span class="contacts-channel-text">
+                  <strong>Telegram</strong>
+                  <span>Написать в чат</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contacts-channel" href="https://instagram.com/knit.katarina" target="_blank" rel="noopener">
+                <span class="contacts-channel-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <rect x="3.5" y="3.5" width="17" height="17" rx="5" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.5"/>
+                    <circle cx="17.2" cy="6.8" r="1" fill="currentColor"/>
+                  </svg>
+                </span>
+                <span class="contacts-channel-text">
+                  <strong>Instagram</strong>
+                  <span>@knit.katarina</span>
+                </span>
+              </a>
+            </li>
+            <li>
+              <a class="contacts-channel" href="https://vk.com/knit.katarina" target="_blank" rel="noopener">
+                <span class="contacts-channel-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path
+                      fill="currentColor"
+                      d="M15.07 2H8.93C3.33 2 2 3.33 2 8.93v6.14C2 20.67 3.33 22 8.93 22h6.14c5.6 0 6.93-1.33 6.93-6.93V8.93C22 3.33 20.67 2 15.07 2zm3.18 14.48h-1.46c-.55 0-.72-.44-1.71-1.42-.86-.82-1.24-.93-1.45-.93-.3 0-.38.08-.38.5v1.3c0 .35-.11.56-1.04.56-1.53 0-3.23-.93-4.43-2.65C6.3 11.5 5.7 9.14 5.7 8.73c0-.2.08-.39.5-.39h1.46c.37 0 .51.17.66.56.74 2.14 1.98 4.02 2.49 4.02.19 0 .28-.09.28-.56V10.1c-.06-.98-.58-1.07-.58-1.42 0-.17.14-.34.37-.34h2.3c.31 0 .42.17.42.54v2.9c0 .31.14.42.23.42.19 0 .34-.11.69-.46 1.07-1.2 1.84-3.05 1.84-3.05.1-.22.27-.39.64-.39h1.46c.44 0 .53.23.44.54-.18.85-1.96 3.34-1.96 3.34-.16.25-.21.37 0 .65.16.21.67.65 1.01 1.05.63.72 1.11 1.32 1.24 1.74.13.41-.07.62-.48.62z"
+                    />
+                  </svg>
+                </span>
+                <span class="contacts-channel-text">
+                  <strong>ВКонтакте</strong>
+                  <span>Сообщество мастерской</span>
+                </span>
+              </a>
+            </li>
+          </ul>
+        </section>
       </aside>
     </div>
   </main>

@@ -1,15 +1,22 @@
-const params = new URLSearchParams(window.location.search);
-const product = Store.getProduct(params.get("id"));
-const root = document.getElementById("product-page");
+(async function initProduct() {
+  const params = new URLSearchParams(window.location.search);
+  const product = Store.getProduct(params.get("id"));
+  const root = document.getElementById("product-page");
 
-if (!product) {
-  root.innerHTML = `
-    <div class="page-head">
-      <h1>Товар не найден</h1>
-      <p><a class="text-link" href="catalog.html">← Вернуться в каталог</a></p>
-    </div>
-  `;
-} else {
+  if (!product) {
+    root.innerHTML = `
+      <div class="page-head">
+        <h1>Товар не найден</h1>
+        <p><a class="text-link" href="catalog.html">← Вернуться в каталог</a></p>
+      </div>
+    `;
+    return;
+  }
+
+  if (Store.getUser() && Store.loadFavorites) {
+    await Store.loadFavorites();
+  }
+
   document.title = `${product.name} — knit.katarina`;
   const fav = Store.isFavorite(product.id);
   const gallery = product.images && product.images.length
@@ -63,16 +70,41 @@ if (!product) {
   `;
 
   document.getElementById("add-cart").addEventListener("click", () => {
+    if (!Store.getUser()) {
+      if (typeof showNeedAuth === "function") {
+        showNeedAuth(
+          "Чтобы добавить товар в корзину, сначала войдите в аккаунт.",
+          "product.html?id=" + product.id
+        );
+      }
+      return;
+    }
+
     Store.addToCart(product.id);
     const status = document.getElementById("product-status");
     status.hidden = false;
+    status.classList.remove("error");
     status.textContent = "Товар добавлен в корзину";
   });
 
-  document.getElementById("toggle-fav").addEventListener("click", (e) => {
-    Store.toggleFavorite(product.id);
-    const isFav = Store.isFavorite(product.id);
-    e.currentTarget.textContent = isFav ? "В избранном" : "В избранное";
+  document.getElementById("toggle-fav").addEventListener("click", async (e) => {
+    if (!Store.getUser()) {
+      if (typeof showNeedAuth === "function") {
+        showNeedAuth(
+          "Чтобы добавить игрушку в избранное, сначала войдите в аккаунт.",
+          "product.html?id=" + product.id
+        );
+      }
+      return;
+    }
+
+    const result = await Store.toggleFavorite(product.id);
+    if (!result.ok) {
+      return;
+    }
+    e.currentTarget.textContent = result.isFavorite
+      ? "В избранном"
+      : "В избранное";
   });
 
   const mainImage = document.getElementById("product-main-image");
@@ -84,4 +116,4 @@ if (!product) {
       thumb.classList.add("is-active");
     });
   });
-}
+})();

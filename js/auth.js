@@ -43,7 +43,7 @@ if (loginForm) {
     if (user && user.role === "admin") {
       window.location.href = next.includes("admin") ? next : "admin/index.html";
     } else {
-      window.location.href = next;
+      window.location.href = next.includes("admin") ? "account.html" : next;
     }
   });
 }

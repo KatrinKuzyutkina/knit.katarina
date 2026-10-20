@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>knit.katarina — мобильный прототип 320px</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --clay: #c47a52;
+      --clay-deep: #8a5e52;
+      --clay-soft: #e8a57a;
+      --ink: #4a342c;
+      --muted: #8c6b5a;
+      --cream: #fff8f3;
+      --line: rgba(138, 94, 82, 0.18);
+      --font-display: "Cormorant Garamond", Georgia, serif;
+      --font-body: "Nunito", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: start center;
+      padding: 24px 12px;
+      background: #e8ddd4;
+      font-family: var(--font-body);
+      color: var(--ink);
+    }
+
+    .phone {
+      width: 320px;
+      min-height: 640px;
+      overflow: hidden;
+      background:
+        radial-gradient(420px 280px at 20% -10%, rgba(245, 180, 145, 0.55), transparent 60%),
+        radial-gradient(360px 240px at 100% 0%, rgba(232, 165, 122, 0.35), transparent 55%),
+        linear-gradient(165deg, #f7c8aa 0%, #f3b48a 42%, #e89a6c 100%);
+      position: relative;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 14px 10px;
+      position: relative;
+      z-index: 20;
+    }
+
+    .logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1.15rem;
+      color: var(--clay-deep);
+      text-decoration: none;
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--clay-deep);
+    }
+
+    .menu-btn {
+      position: relative;
+      width: 20px;
+      height: 12px;
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .menu-btn span {
+      position: absolute;
+      left: 0;
+      width: 20px;
+      height: 2px;
+      border-radius: 999px;
+      background: var(--clay-deep);
+    }
+
+    .menu-btn span:nth-child(1) { top: 0; }
+    .menu-btn span:nth-child(2) { top: 5px; }
+    .menu-btn span:nth-child(3) { top: 10px; }
+
+    .menu-panel {
+      display: none;
+      position: absolute;
+      top: 56px;
+      left: 10px;
+      right: 10px;
+      z-index: 30;
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255, 252, 249, 0.98);
+      border: 1px solid var(--line);
+      box-shadow: 0 12px 28px rgba(138, 94, 82, 0.16);
+    }
+
+    .menu-panel.is-open {
+      display: grid;
+      gap: 4px;
+    }
+
+    .menu-panel a {
+      display: block;
+      padding: 10px 12px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: var(--clay-deep);
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    .menu-panel a:hover,
+    .menu-panel a:focus {
+      background: rgba(245, 180, 145, 0.25);
+    }
+
+    .hero {
+      padding: 8px 14px 22px;
+    }
+
+    .hero-brand {
+      margin: 0 0 6px;
+      font-family: var(--font-display);
+      font-size: 2rem;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--clay-deep);
+    }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-family: var(--font-display);
+      font-size: 1.15rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .hero p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+
+    .btns {
+      display: grid;
+      gap: 8px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 16px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.88rem;
+      text-decoration: none;
+      border: none;
+      font-family: var(--font-body);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--clay), var(--clay-soft));
+      color: #fff8f3;
+    }
+
+    .btn-ghost {
+      background: rgba(255, 248, 243, 0.7);
+      color: var(--clay-deep);
+      border: 1px solid var(--line);
+    }
+
+    .block {
+      padding: 22px 14px;
+      background: rgba(255, 248, 243, 0.72);
+      border-top: 1px solid var(--line);
+    }
+
+    .block h2 {
+      margin: 0 0 8px;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--clay-deep);
+    }
+
+    .block > p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .offers {
+      display: grid;
+      gap: 12px;
+    }
+
+    .offer {
+      overflow: hidden;
+      border-radius: 14px;
+      background: rgba(255, 252, 249, 0.88);
+      border: 1px solid rgba(255, 248, 243, 0.8);
+    }
+
+    .offer-media {
+      height: 110px;
+      background: linear-gradient(145deg, rgba(245, 180, 145, 0.55), rgba(196, 122, 82, 0.28));
+      display: grid;
+      place-items: center;
+      color: rgba(74, 52, 44, 0.45);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .offer-body { padding: 12px; }
+
+    .offer-body h3 {
+      margin: 0 0 6px;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--clay-deep);
+    }
+
+    .offer-body p {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .offer-link {
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--clay);
+    }
+
+    .footer {
+      padding: 18px 14px 22px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      background: rgba(74, 52, 44, 0.06);
+    }
+
+    .footer-brand {
+      margin: 0 0 8px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--clay-deep);
+    }
+
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 12px;
+      margin-bottom: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--clay-deep);
+    }
+
+    .footer-copy {
+      margin: 0;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="phone">
+    <header class="header">
+      <a class="logo" href="#">knit.katarina</a>
+      <div class="header-right">
+        <span>♡</span>
+        <span>Корзина</span>
+        <button
+          type="button"
+          class="menu-btn"
+          id="menu-btn"
+          aria-label="Открыть меню"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+
+      <nav class="menu-panel" id="mobile-menu" hidden>
+        <a href="#">Каталог</a>
+        <a href="#">О мастерской</a>
+        <a href="#">На заказ</a>
+        <a href="#">Доставка</a>
+        <a href="#">Контакты</a>
+        <a href="#">Кабинет</a>
+      </nav>
+    </header>
+
+    <section class="hero">
+      <h1>Милые игрушки и букеты цветов ручной работы</h1>
+      <p>Можно заказать мягких зайчиков, мишек и других героев — или вязаный букет цветов для подарка и уюта.</p>
+      <div class="btns">
+        <a class="btn btn-primary" href="#">Смотреть каталог</a>
+        <a class="btn btn-ghost" href="#">Заказать на заказ</a>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Что можно заказать</h2>
+      <p>Готовое изделие из каталога или индивидуальный заказ.</p>
+      <div class="offers">
+        <article class="offer">
+          <div class="offer-media">фото игрушки</div>
+          <div class="offer-body">
+            <h3>Милые игрушки</h3>
+            <p>Зайки, мишки и другие герои.</p>
+            <span class="offer-link">В каталог →</span>
+          </div>
+        </article>
+        <article class="offer">
+          <div class="offer-media">фото букета</div>
+          <div class="offer-body">
+            <h3>Букеты цветов</h3>
+            <p>Вязаные букеты, которые не завянут.</p>
+            <span class="offer-link">Заказать букет →</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="block">
+      <h2>Ручная работа в одном экземпляре</h2>
+      <p>Каждая вещь создаётся вручную. Если нужного образа нет — оставьте заявку.</p>
+      <a class="btn btn-primary" href="#">Оставить заявку</a>
+    </section>
+
+    <footer class="footer">
+      <p class="footer-brand">knit.katarina</p>
+      <div class="footer-links">
+        <span>Каталог</span>
+        <span>Доставка</span>
+        <span>Контакты</span>
+        <span>Войти</span>
+      </div>
+      <p class="footer-copy">© knit.katarina</p>
+    </footer>
+  </div>
+
+  <script>
+    const btn = document.getElementById("menu-btn");
+    const menu = document.getElementById("mobile-menu");
+
+    btn.addEventListener("click", () => {
+      const open = menu.hasAttribute("hidden");
+      if (open) {
+        menu.removeAttribute("hidden");
+        menu.classList.add("is-open");
+        btn.setAttribute("aria-expanded", "true");
+        btn.setAttribute("aria-label", "Закрыть меню");
+      } else {
+        menu.setAttribute("hidden", "");
+        menu.classList.remove("is-open");
+        btn.setAttribute("aria-expanded", "false");
+        btn.setAttribute("aria-label", "Открыть меню");
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!btn.contains(e.target) && !menu.contains(e.target) && !menu.hasAttribute("hidden")) {
+        menu.setAttribute("hidden", "");
+        menu.classList.remove("is-open");
+        btn.setAttribute("aria-expanded", "false");
+        btn.setAttribute("aria-label", "Открыть меню");
+      }
+    });
+  </script>
+</body>
+</html>

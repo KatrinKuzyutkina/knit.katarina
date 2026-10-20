@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Сообщения — админ</title>
+  <meta name="theme-color" content="#c47a52" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" /></noscript>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="../home.html">knit.katarina</a>
+    <nav class="nav" id="site-nav" aria-label="Админ-навигация">
+      <a href="index.html">Обзор</a>
+      <a href="products.html">Товары</a>
+      <a href="orders.html">Заказы</a>
+      <a href="clients.html">Клиенты</a>
+      <a href="custom-requests.html">Заявки</a>
+      <a href="messages.html" aria-current="page">Сообщения</a>
+    </nav>
+    <div class="header-actions">
+      <a href="../home.html">На сайт</a>
+      <button type="button" class="btn btn-ghost btn-small" id="admin-logout">Выйти</button>
+      <button type="button" class="nav-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page">
+    <div class="page-head">
+      <h1>Сообщения</h1>
+      <p>Обращения посетителей с страницы контактов.</p>
+    </div>
+    <div id="admin-messages" class="stack-list"></div>
+    <p class="page-note" id="admin-messages-empty" hidden>Сообщений пока нет.</p>
+  </main>
+
+  <script src="../js/store.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+</html>

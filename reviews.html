@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Отзывы — knit.katarina</title>
+  <meta name="description" content="Отзывы покупателей о вязаных игрушках и букетах ручной работы knit.katarina." />
+  <meta name="theme-color" content="#c47a52" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" /></noscript>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <a class="logo" href="home.html">knit.katarina</a>
+    <nav class="nav" id="site-nav" aria-label="Основная навигация">
+      <a href="catalog.html">Каталог</a>
+      <a href="about.html">О мастерской</a>
+      <a href="custom-order.html">На заказ</a>
+      <a href="delivery.html">Доставка</a>
+      <a href="reviews.html" aria-current="page">Отзывы</a>
+      <a href="contacts.html">Контакты</a>
+    </nav>
+    <div class="header-actions">
+      <a href="favorites.html" aria-label="Избранное">♡</a>
+      <a href="cart.html" aria-label="Корзина">Корзина</a>
+      <a class="header-account" href="account.html">Кабинет</a>
+      <button type="button" class="nav-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main class="page reviews-page">
+    <section class="reviews-intro">
+      <h1>Отзывы</h1>
+      <p class="reviews-lead">
+        Что говорят покупатели о наших игрушках и букетах.
+        Читать отзывы можно всем, а оставить — после входа в аккаунт.
+      </p>
+      <p class="reviews-summary" id="reviews-summary"></p>
+    </section>
+
+    <section class="reviews-sheet" aria-labelledby="review-form-title">
+      <h2 id="review-form-title">Оставить отзыв</h2>
+
+      <div id="review-gate" hidden>
+        <p class="contacts-sheet-note">
+          Чтобы оставить отзыв, сначала войдите в аккаунт — так мы знаем, что отзыв от настоящего покупателя.
+        </p>
+        <a class="btn btn-primary" href="login.html?next=reviews.html">Войти</a>
+      </div>
+
+      <form class="reviews-form" id="review-form" hidden>
+        <div class="field review-rating-field">
+          <span>Ваша оценка</span>
+          <div class="review-stars-input" role="radiogroup" aria-label="Оценка от 1 до 5">
+            <input type="radio" id="star5" name="rating" value="5" checked />
+            <label for="star5" aria-label="5 из 5">★</label>
+            <input type="radio" id="star4" name="rating" value="4" />
+            <label for="star4" aria-label="4 из 5">★</label>
+            <input type="radio" id="star3" name="rating" value="3" />
+            <label for="star3" aria-label="3 из 5">★</label>
+            <input type="radio" id="star2" name="rating" value="2" />
+            <label for="star2" aria-label="2 из 5">★</label>
+            <input type="radio" id="star1" name="rating" value="1" />
+            <label for="star1" aria-label="1 из 5">★</label>
+          </div>
+        </div>
+
+        <label class="field">
+          <span>Что вы заказывали <small>(необязательно)</small></span>
+          <input type="text" name="item" maxlength="150" placeholder="Например: Зайка в комбинезоне" />
+        </label>
+
+        <label class="field">
+          <span>Ваш отзыв</span>
+          <textarea name="text" rows="4" required minlength="3" maxlength="2000" placeholder="Расскажите, что понравилось"></textarea>
+        </label>
+
+        <div class="field review-photos-field">
+          <span>Фото <small>(необязательно, до 4 штук)</small></span>
+          <input class="review-file-input" type="file" id="review-photos" name="photos" accept="image/*" multiple />
+          <label class="review-file-btn" for="review-photos">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="15" rx="3" stroke="currentColor" stroke-width="1.7"/>
+              <circle cx="9" cy="10" r="1.6" fill="currentColor"/>
+              <path d="M5.5 18.5l4.2-4.2a1.6 1.6 0 0 1 2.3 0l2 2 2.3-2.3a1.6 1.6 0 0 1 2.2 0l2 2" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              <path d="M12 2.8v3M10.5 4.3h3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+            <span>Выбрать фото</span>
+            <span class="review-file-count" id="review-file-count" hidden></span>
+          </label>
+          <div class="review-photo-preview" id="review-photo-preview" hidden></div>
+          <p class="review-photo-hint" id="review-photo-hint" hidden></p>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Отправить отзыв</button>
+        <p class="form-status" id="review-status" hidden></p>
+      </form>
+    </section>
+
+    <section aria-labelledby="reviews-list-title">
+      <h2 class="reviews-list-title" id="reviews-list-title">Все отзывы</h2>
+      <p class="form-status" id="reviews-status" hidden></p>
+      <div class="reviews-list" id="reviews-list"></div>
+      <p class="reviews-empty" id="reviews-empty" hidden>
+        Отзывов пока нет. Станьте первым, кто поделится впечатлениями!
+      </p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p class="footer-brand">knit.katarina</p>
+    <div class="footer-links">
+      <a href="catalog.html">Каталог</a>
+      <a href="delivery.html">Доставка и оплата</a>
+      <a href="reviews.html">Отзывы</a>
+      <a href="contacts.html">Контакты</a>
+      <a href="login.html">Войти</a>
+    </div>
+    <p class="footer-copy">© knit.katarina — изделия ручной работы</p>
+  </footer>
+
+  <div class="photo-lightbox" id="photo-lightbox" hidden role="dialog" aria-modal="true" aria-label="Просмотр фото">
+    <button type="button" class="photo-lightbox-close" id="photo-lightbox-close" aria-label="Закрыть">×</button>
+    <button type="button" class="photo-lightbox-nav photo-lightbox-prev" id="photo-lightbox-prev" aria-label="Предыдущее фото">‹</button>
+    <img class="photo-lightbox-img" id="photo-lightbox-img" src="" alt="Фото к отзыву" />
+    <button type="button" class="photo-lightbox-nav photo-lightbox-next" id="photo-lightbox-next" aria-label="Следующее фото">›</button>
+    <p class="photo-lightbox-counter" id="photo-lightbox-counter"></p>
+  </div>
+
+  <script src="js/store.js?v=20261020"></script>
+  <script src="js/main.js?v=20261020"></script>
+  <script src="js/reviews.js?v=20261020"></script>
+</body>
+</html>

@@ -4,61 +4,165 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Доставка и оплата — knit.katarina</title>
+  <meta name="description" content="Способы доставки и оплаты изделий ручной работы knit.katarina." />
   <meta name="theme-color" content="#c47a52" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" media="print" onload="this.media='all'" />
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" /></noscript>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="site-header">
     <a class="logo" href="home.html">knit.katarina</a>
-    <nav class="nav" aria-label="Основная навигация">
+    <nav class="nav" id="site-nav" aria-label="Основная навигация">
       <a href="catalog.html">Каталог</a>
       <a href="about.html">О мастерской</a>
       <a href="custom-order.html">На заказ</a>
       <a href="delivery.html" aria-current="page">Доставка</a>
+      <a href="reviews.html">Отзывы</a>
       <a href="contacts.html">Контакты</a>
     </nav>
     <div class="header-actions">
       <a href="favorites.html" aria-label="Избранное">♡</a>
       <a href="cart.html" aria-label="Корзина">Корзина</a>
       <a class="header-account" href="account.html">Кабинет</a>
+      <button type="button" class="nav-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
     </div>
   </header>
 
-  <main class="page">
-    <div class="page-head">
+  <main class="page delivery-page">
+    <section class="delivery-intro">
       <h1>Доставка и оплата</h1>
-      <p>Условия получения и оплаты уникальных изделий.</p>
-    </div>
-
-    <section class="content-block">
-      <h2>Доставка</h2>
-      <ul class="plain-list">
-        <li><strong>Самовывоз</strong> — из мастерской по согласованию</li>
-        <li><strong>Курьер по городу</strong> — срок 1–2 дня после подтверждения</li>
-        <li><strong>Почта / СДЭК</strong> — по России, срок зависит от региона</li>
-      </ul>
-      <p>После оформления заказа мастер свяжется с вами, чтобы подтвердить детали.</p>
-    </section>
-
-    <section class="content-block">
-      <h2>Оплата</h2>
-      <ul class="plain-list">
-        <li>Перевод на карту</li>
-        <li>Оплата картой при получении (для курьера / самовывоза)</li>
-        <li>Наличные при самовывозе</li>
-      </ul>
-      <p>Онлайн-эквайринг пока не подключён — все расчёты согласуются напрямую.</p>
-    </section>
-
-    <section class="content-block">
-      <h2>Важно</h2>
-      <p>
-        Каждое изделие продаётся в единственном экземпляре. После оплаты бронь снимается с витрины.
-        Для индивидуального изготовления используйте <a class="text-link" href="custom-order.html">форму заказа</a>.
+      <p class="delivery-lead">
+        Аккуратно упаковываем каждое изделие и выбираем удобный способ получения —
+        от самовывоза до отправки по России.
       </p>
+    </section>
+
+    <section class="delivery-section" aria-labelledby="delivery-ways-title">
+      <div class="delivery-section-head">
+        <h2 id="delivery-ways-title">Способы получения</h2>
+        <p>После оформления заказа мастер свяжется с вами и подтвердит детали.</p>
+      </div>
+
+      <div class="delivery-ways">
+        <article class="delivery-way">
+          <div class="delivery-way-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none">
+              <path d="M8 18h24v14H8V18z" stroke="currentColor" stroke-width="1.7"/>
+              <path d="M12 18V14a8 8 0 0 1 16 0v4" stroke="currentColor" stroke-width="1.7"/>
+              <path d="M16 25h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="delivery-way-body">
+            <h3>Самовывоз</h3>
+            <p class="delivery-way-meta">По согласованию</p>
+            <p>Заберите игрушку из мастерской в удобное время — без ожидания доставки.</p>
+          </div>
+        </article>
+
+        <article class="delivery-way">
+          <div class="delivery-way-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none">
+              <path d="M6 26h18l6-8h4v10H6v-2z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+              <circle cx="12" cy="30" r="2.2" stroke="currentColor" stroke-width="1.7"/>
+              <circle cx="28" cy="30" r="2.2" stroke="currentColor" stroke-width="1.7"/>
+              <path d="M6 20h12" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="delivery-way-body">
+            <h3>Курьер по городу</h3>
+            <p class="delivery-way-meta">1–2 дня после подтверждения</p>
+            <p>Привезём заказ по городу. Точное время и стоимость согласуем при подтверждении.</p>
+          </div>
+        </article>
+
+        <article class="delivery-way">
+          <div class="delivery-way-icon" aria-hidden="true">
+            <svg viewBox="0 0 40 40" fill="none">
+              <path d="M8 14h24v16H8V14z" stroke="currentColor" stroke-width="1.7"/>
+              <path d="M8 18h24M20 18v12" stroke="currentColor" stroke-width="1.7"/>
+              <path d="M14 10l6 4 6-4" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="delivery-way-body">
+            <h3>Почта / СДЭК</h3>
+            <p class="delivery-way-meta">По всей России</p>
+            <p>Отправляем в регионы. Срок зависит от города — подскажем ориентир при оформлении.</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="delivery-section" aria-labelledby="delivery-flow-title">
+      <div class="delivery-section-head">
+        <h2 id="delivery-flow-title">Как проходит заказ</h2>
+        <p>Короткий путь от выбора игрушки до получения.</p>
+      </div>
+
+      <ol class="delivery-flow">
+        <li>
+          <span class="delivery-flow-num">01</span>
+          <div>
+            <h3>Вы выбираете изделие</h3>
+            <p>В каталоге или оставляете заявку на индивидуальный заказ.</p>
+          </div>
+        </li>
+        <li>
+          <span class="delivery-flow-num">02</span>
+          <div>
+            <h3>Подтверждаем детали</h3>
+            <p>Связываемся, уточняем способ получения и сроки.</p>
+          </div>
+        </li>
+        <li>
+          <span class="delivery-flow-num">03</span>
+          <div>
+            <h3>Оплата</h3>
+            <p>Перевод или оплата при получении — как вам удобнее.</p>
+          </div>
+        </li>
+        <li>
+          <span class="delivery-flow-num">04</span>
+          <div>
+            <h3>Отправка или встреча</h3>
+            <p>Аккуратно упаковываем и передаём заказ.</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="delivery-section delivery-pay-section" aria-labelledby="delivery-pay-title">
+      <div class="delivery-section-head">
+        <h2 id="delivery-pay-title">Оплата</h2>
+        <p>Онлайн-эквайринг пока не подключён — все расчёты согласуются напрямую.</p>
+      </div>
+
+      <ul class="delivery-pay-list">
+        <li>
+          <strong>Перевод на карту</strong>
+          <span>После подтверждения заказа</span>
+        </li>
+        <li>
+          <strong>Наличные</strong>
+          <span>При самовывозе из мастерской</span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="delivery-note">
+      <p class="delivery-note-text">
+        Если нужной игрушки нет в каталоге — можно заказать изготовление индивидуально.
+      </p>
+      <div class="delivery-note-actions">
+        <a class="btn btn-primary" href="catalog.html">В каталог</a>
+        <a class="btn btn-ghost" href="custom-order.html">На заказ</a>
+      </div>
     </section>
   </main>
 

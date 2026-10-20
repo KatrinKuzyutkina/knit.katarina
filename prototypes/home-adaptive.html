@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Прототипы главной — 320px / 680px — knit.katarina</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --clay: #c47a52;
+      --clay-deep: #8a5e52;
+      --clay-soft: #e8a57a;
+      --ink: #4a342c;
+      --muted: #8c6b5a;
+      --cream: #fff8f3;
+      --line: rgba(138, 94, 82, 0.18);
+      --font-display: "Cormorant Garamond", Georgia, serif;
+      --font-body: "Nunito", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: var(--font-body);
+      color: var(--ink);
+      background: #efe4db;
+      padding: 32px 20px 48px;
+    }
+
+    .page-title {
+      text-align: center;
+      margin: 0 0 28px;
+    }
+    .page-title h1 {
+      margin: 0 0 8px;
+      font-family: var(--font-display);
+      font-size: 1.8rem;
+      color: var(--clay-deep);
+    }
+    .page-title p {
+      margin: 0;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .boards {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 36px;
+      align-items: flex-start;
+    }
+
+    .board {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .board-label {
+      font-weight: 800;
+      font-size: 0.95rem;
+      color: var(--clay-deep);
+      letter-spacing: 0.02em;
+    }
+
+    .device {
+      background: #3a2e2a;
+      border-radius: 28px;
+      padding: 12px;
+      box-shadow: 0 18px 40px rgba(74, 52, 44, 0.22);
+    }
+    .device.phone { width: 344px; }
+    .device.tablet { width: 704px; }
+
+    .screen {
+      overflow: hidden;
+      border-radius: 18px;
+      background:
+        radial-gradient(420px 280px at 20% -10%, rgba(245, 180, 145, 0.55), transparent 60%),
+        radial-gradient(360px 240px at 100% 0%, rgba(232, 165, 122, 0.35), transparent 55%),
+        linear-gradient(165deg, #f7c8aa 0%, #f3b48a 42%, #e89a6c 100%);
+    }
+    .phone .screen { width: 320px; height: 640px; overflow-y: auto; }
+    .tablet .screen { width: 680px; height: 780px; overflow-y: auto; }
+
+    .screen::-webkit-scrollbar { width: 0; height: 0; }
+
+    /* Shared UI inside screens */
+    .proto-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 14px 14px 10px;
+    }
+    .proto-logo {
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--clay-deep);
+      font-size: 1.15rem;
+    }
+    .proto-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--clay-deep);
+    }
+    .burger {
+      width: 28px;
+      height: 22px;
+      display: grid;
+      gap: 5px;
+      align-content: center;
+    }
+    .burger span {
+      display: block;
+      height: 2px;
+      border-radius: 2px;
+      background: var(--clay-deep);
+    }
+
+    .hero {
+      padding: 8px 14px 22px;
+    }
+    .hero-brand {
+      margin: 0 0 6px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      line-height: 1;
+      color: var(--clay-deep);
+    }
+    .phone .hero-brand { font-size: 2rem; }
+    .tablet .hero-brand { font-size: 2.6rem; }
+
+    .hero h1 {
+      margin: 0 0 10px;
+      font-family: var(--font-display);
+      font-weight: 600;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    .phone .hero h1 { font-size: 1.15rem; }
+    .tablet .hero h1 { font-size: 1.45rem; max-width: 28rem; }
+
+    .hero p {
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 0.9rem;
+      line-height: 1.45;
+    }
+    .tablet .hero p { font-size: 0.98rem; max-width: 32rem; }
+
+    .btns {
+      display: flex;
+      gap: 8px;
+    }
+    .phone .btns { flex-direction: column; }
+    .tablet .btns { flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 11px 16px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.88rem;
+      text-decoration: none;
+      border: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--clay), var(--clay-soft));
+      color: #fff8f3;
+    }
+    .btn-ghost {
+      background: rgba(255, 248, 243, 0.7);
+      color: var(--clay-deep);
+      border: 1px solid var(--line);
+    }
+
+    .block {
+      padding: 22px 14px;
+      background: rgba(255, 248, 243, 0.72);
+      border-top: 1px solid var(--line);
+    }
+    .block h2 {
+      margin: 0 0 8px;
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      color: var(--clay-deep);
+    }
+    .tablet .block h2 { font-size: 1.45rem; }
+    .block > p {
+      margin: 0 0 14px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+
+    .offers {
+      display: grid;
+      gap: 12px;
+    }
+    .tablet .offers {
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .offer {
+      overflow: hidden;
+      border-radius: 14px;
+      background: rgba(255, 252, 249, 0.88);
+      border: 1px solid rgba(255, 248, 243, 0.8);
+    }
+    .offer-media {
+      height: 110px;
+      background:
+        linear-gradient(145deg, rgba(245, 180, 145, 0.55), rgba(196, 122, 82, 0.28));
+      display: grid;
+      place-items: center;
+      color: rgba(74, 52, 44, 0.45);
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .tablet .offer-media { height: 140px; }
+    .offer-body { padding: 12px; }
+    .offer-body h3 {
+      margin: 0 0 6px;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      color: var(--clay-deep);
+    }
+    .offer-body p {
+      margin: 0 0 8px;
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+    .offer-link {
+      font-weight: 800;
+      font-size: 0.85rem;
+      color: var(--clay);
+    }
+
+    .note .btn { margin-top: 4px; }
+
+    .footer {
+      padding: 18px 14px 22px;
+      text-align: center;
+      border-top: 1px solid var(--line);
+      background: rgba(74, 52, 44, 0.06);
+    }
+    .footer-brand {
+      margin: 0 0 8px;
+      font-family: var(--font-display);
+      font-weight: 700;
+      color: var(--clay-deep);
+    }
+    .footer-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 12px;
+      margin-bottom: 8px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--clay-deep);
+    }
+    .footer-copy {
+      margin: 0;
+      font-size: 0.72rem;
+      color: var(--muted);
+    }
+
+    .hint {
+      max-width: 720px;
+      margin: 28px auto 0;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="page-title">
+    <h1>Адаптивные прототипы главной</h1>
+    <p>Контрольные точки: 320px (мобильный) и 680px (планшет)</p>
+  </div>
+
+  <div class="boards">
+    <!-- MOBILE 320 -->
+    <div class="board">
+      <div class="board-label">Мобильный · 320px</div>
+      <div class="device phone">
+        <div class="screen" id="shot-320">
+          <header class="proto-header">
+            <span class="proto-logo">knit.katarina</span>
+            <div class="proto-actions">
+              <span>♡</span>
+              <span>Корзина</span>
+              <div class="burger" aria-hidden="true"><span></span><span></span><span></span></div>
+            </div>
+          </header>
+
+          <section class="hero">
+            <p class="hero-brand">knit.katarina</p>
+            <h1>Милые игрушки и букеты цветов ручной работы</h1>
+            <p>Можно заказать мягких зайчиков, мишек и других героев — или вязаный букет цветов для подарка и уюта.</p>
+            <div class="btns">
+              <a class="btn btn-primary" href="#">Смотреть каталог</a>
+              <a class="btn btn-ghost" href="#">Заказать на заказ</a>
+            </div>
+          </section>
+
+          <section class="block">
+            <h2>Что можно заказать</h2>
+            <p>Готовое изделие из каталога или индивидуальный заказ.</p>
+            <div class="offers">
+              <article class="offer">
+                <div class="offer-media">фото игрушки</div>
+                <div class="offer-body">
+                  <h3>Милые игрушки</h3>
+                  <p>Зайки, мишки и другие герои.</p>
+                  <span class="offer-link">В каталог →</span>
+                </div>
+              </article>
+              <article class="offer">
+                <div class="offer-media">фото букета</div>
+                <div class="offer-body">
+                  <h3>Букеты цветов</h3>
+                  <p>Вязаные букеты, которые не завянут.</p>
+                  <span class="offer-link">Заказать букет →</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="block note">
+            <h2>Ручная работа в одном экземпляре</h2>
+            <p>Каждая вещь создаётся вручную. Если нужного образа нет — оставьте заявку.</p>
+            <a class="btn btn-primary" href="#">Оставить заявку</a>
+          </section>
+
+          <footer class="footer">
+            <p class="footer-brand">knit.katarina</p>
+            <div class="footer-links">
+              <span>Каталог</span>
+              <span>Доставка</span>
+              <span>Контакты</span>
+              <span>Войти</span>
+            </div>
+            <p class="footer-copy">© knit.katarina</p>
+          </footer>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLET 680 -->
+    <div class="board">
+      <div class="board-label">Планшет · 680px</div>
+      <div class="device tablet">
+        <div class="screen" id="shot-680">
+          <header class="proto-header">
+            <span class="proto-logo">knit.katarina</span>
+            <div class="proto-actions">
+              <span>Каталог</span>
+              <span>На заказ</span>
+              <span>♡</span>
+              <span>Корзина</span>
+              <div class="burger" aria-hidden="true"><span></span><span></span><span></span></div>
+            </div>
+          </header>
+
+          <section class="hero">
+            <p class="hero-brand">knit.katarina</p>
+            <h1>Милые игрушки и букеты цветов ручной работы</h1>
+            <p>Можно заказать мягких зайчиков, мишек и других героев — или вязаный букет цветов для подарка и уюта. Каждое изделие создаётся вручную.</p>
+            <div class="btns">
+              <a class="btn btn-primary" href="#">Смотреть каталог</a>
+              <a class="btn btn-ghost" href="#">Заказать на заказ</a>
+            </div>
+          </section>
+
+          <section class="block">
+            <h2>Что можно заказать</h2>
+            <p>Выберите готовое изделие из каталога или оставьте заявку на индивидуальный заказ.</p>
+            <div class="offers">
+              <article class="offer">
+                <div class="offer-media">фото игрушки</div>
+                <div class="offer-body">
+                  <h3>Милые игрушки</h3>
+                  <p>Зайки, мишки и другие герои — готовые или на заказ.</p>
+                  <span class="offer-link">В каталог →</span>
+                </div>
+              </article>
+              <article class="offer">
+                <div class="offer-media">фото букета</div>
+                <div class="offer-body">
+                  <h3>Букеты цветов</h3>
+                  <p>Вязаные розы и сборные букеты, которые не завянут.</p>
+                  <span class="offer-link">Заказать букет →</span>
+                </div>
+              </article>
+            </div>
+          </section>
+
+          <section class="block note">
+            <h2>Ручная работа в одном экземпляре</h2>
+            <p>Каждая вещь появляется в мастерской один раз. Если нужного образа нет на витрине — опишите идею, и мы свяжем игрушку или букет специально для вас.</p>
+            <a class="btn btn-primary" href="#">Оставить заявку</a>
+          </section>
+
+          <footer class="footer">
+            <p class="footer-brand">knit.katarina</p>
+            <div class="footer-links">
+              <span>Каталог</span>
+              <span>Доставка и оплата</span>
+              <span>Контакты</span>
+              <span>Войти</span>
+            </div>
+            <p class="footer-copy">© knit.katarina — изделия ручной работы</p>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <p class="hint">
+    Откройте файл в браузере и сделайте скриншоты каждого устройства.<br />
+    Файл: <code>prototypes/home-adaptive.html</code>
+  </p>
+</body>
+</html>
