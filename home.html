@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" media="print" onload="this.media='all'" />
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" /></noscript>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/style.css?v=20261021e" />
 </head>
 <body class="home-body">
   <header class="site-header">
@@ -38,58 +38,26 @@
   <main>
     <section class="hero home-hero">
       <div class="home-hero-glow" aria-hidden="true"></div>
-      <div class="hero-content">
-        <p class="hero-brand">knit.katarina</p>
-        <h1>Милые игрушки и букеты цветов ручной работы</h1>
-        <p class="hero-text">
-          Можно заказать мягких зайчиков, мишек и других героев — или вязаный букет цветов
-          для подарка и уюта. Каждое изделие создаётся вручную, с теплом и вниманием к деталям.
-        </p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" href="catalog.html">Смотреть каталог</a>
-          <a class="btn btn-ghost" href="custom-order.html">Заказать на заказ</a>
+      <div class="home-hero-layout">
+        <div class="hero-content">
+          <p class="hero-brand">knit.katarina</p>
+          <h1>Милые игрушки и букеты цветов ручной работы</h1>
+          <p class="hero-text">
+            Мягкие зайчики, мишки и вязаные букеты — каждое изделие создаётся вручную,
+            в одном экземпляре, с теплом и вниманием к деталям.
+          </p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="catalog.html">Смотреть каталог</a>
+            <a class="btn btn-ghost" href="custom-order.html">Заказать на заказ</a>
+          </div>
+        </div>
+
+        <div class="home-hero-gallery" aria-hidden="true">
+          <img class="home-hero-shot home-hero-shot-main" src="images/bunny-overalls-1.jpg" alt="" />
+          <img class="home-hero-shot home-hero-shot-side" src="images/bouquet-peony-pink.jpg" alt="" />
+          <img class="home-hero-shot home-hero-shot-small" src="images/bear.jpg" alt="" />
         </div>
       </div>
-    </section>
-
-    <section class="section home-offers">
-      <div class="home-offers-head">
-        <h2>Что можно заказать</h2>
-        <p>Выберите готовое изделие из каталога или оставьте заявку на индивидуальный заказ.</p>
-      </div>
-
-      <div class="home-offer-grid">
-        <a class="home-offer" href="catalog.html">
-          <div class="home-offer-media">
-            <img src="images/bunny-overalls-1.jpg" alt="Вязаная игрушка" />
-          </div>
-          <div class="home-offer-body">
-            <h3>Милые игрушки</h3>
-            <p>Зайки, мишки и другие герои — готовые в каталоге или связанные специально для вас.</p>
-            <span class="home-offer-link">В каталог →</span>
-          </div>
-        </a>
-
-        <a class="home-offer" href="custom-order.html">
-          <div class="home-offer-media">
-            <img src="images/yarn-cotton.jpg" alt="Вязаный букет цветов" />
-          </div>
-          <div class="home-offer-body">
-            <h3>Букеты цветов</h3>
-            <p>Вязаные розы, тюльпаны и сборные букеты — нежный подарок, который не завянет.</p>
-            <span class="home-offer-link">Заказать букет →</span>
-          </div>
-        </a>
-      </div>
-    </section>
-
-    <section class="section home-note">
-      <h2>Ручная работа в одном экземпляре</h2>
-      <p>
-        Каждая вещь появляется в мастерской один раз. Если нужного образа нет на витрине —
-        опишите идею, и мы свяжем игрушку или букет специально для вас.
-      </p>
-      <a class="btn btn-primary" href="custom-order.html">Оставить заявку</a>
     </section>
 
     <section class="home-announcements" id="home-announcements" hidden>
@@ -103,6 +71,7 @@
     <div class="footer-links">
       <a href="catalog.html">Каталог</a>
       <a href="delivery.html">Доставка и оплата</a>
+      <a href="reviews.html">Отзывы</a>
       <a href="contacts.html">Контакты</a>
       <a href="login.html">Войти</a>
     </div>

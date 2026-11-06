@@ -806,19 +806,14 @@ const Store = {
   },
 
   getReviews() {
-    const stored = this._read("kk_reviews", null);
-    if (Array.isArray(stored)) {
-      return stored;
-    }
-    // Стартовые отзывы, чтобы страница не была пустой без сервера
-    return [
+    const seeds = [
       {
         id: "REV-seed-1",
         userId: 0,
         authorName: "Анна",
         rating: 5,
         item: "Зайка в комбинезоне",
-        text: "Заказывала зайку в подарок дочке — очень мягкая и аккуратная, каждая петелька на месте. Дочка с ней не расстаётся!",
+        text: "Заказывала зайку в подарок дочке — очень мягкая и аккуратная. Дочка с ней не расстаётся!",
         createdAt: "2026-09-18T10:30:00.000Z",
       },
       {
@@ -836,10 +831,25 @@ const Store = {
         authorName: "Ольга",
         rating: 4,
         item: "Мишка",
-        text: "Мишка получился с характером, как на фото. Ждала чуть дольше, чем планировала, но результат того стоил.",
+        text: "Мишка вышел такой же милый, как на фото. Ждала чуть дольше, чем планировала, но результат того стоил.",
         createdAt: "2026-10-05T09:00:00.000Z",
       },
     ];
+    const stored = this._read("kk_reviews", null);
+    if (Array.isArray(stored)) {
+      const byId = new Map(seeds.map((s) => [String(s.id), s]));
+      let changed = false;
+      const next = stored.map((review) => {
+        const seed = byId.get(String(review.id));
+        if (!seed || review.text === seed.text) return review;
+        changed = true;
+        return { ...review, text: seed.text, item: seed.item, rating: seed.rating };
+      });
+      if (changed) this._write("kk_reviews", next);
+      return next;
+    }
+    // Стартовые отзывы, чтобы страница не была пустой без сервера
+    return seeds;
   },
 
   async loadReviews() {
